@@ -1,0 +1,31 @@
+.Dashboard {
+   padding: 25px;
+    
+}
+
+.layout {
+    margin: auto;
+    width: 900px;
+    border: 5px solid gray;
+    padding: 20px;
+}
+
+.title {
+    text-align: center;
+    font-family: "Verdana","Arial";
+    font-weight: bold;
+    font-size: 3em;
+    color: cornflowerblue;
+}
+
+.btn-center {
+    display: flex;
+    justify-content: center;
+}
+
+.Dashboard-elem {
+    border: 2px solid blue;
+    margin: auto;
+    padding: 15px;
+    width: 400px;
+}

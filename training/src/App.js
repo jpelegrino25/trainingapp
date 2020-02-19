@@ -6,7 +6,7 @@ import TrainingApp from './components/TrainingApp'
 function App() {
   return (
     <div className="App">
-     <TrainingApp/>
+          <TrainingApp/>
     </div>
   );
 }
