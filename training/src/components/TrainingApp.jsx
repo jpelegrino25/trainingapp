@@ -12,7 +12,7 @@ class TrainingApp extends Component {
             <Router>
                 <>
                 <Switch>
-                    <Route path="/" exact component={LoginComponent}/>
+                    <Route path="/" exact component={Dashboard}/>
                     <Route path="/login"  component={LoginComponent}/>
                     <Route path="/dashboard" component={Dashboard}/>
                     <Route path="/users" component={UserComponent}/>

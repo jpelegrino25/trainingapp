@@ -29,3 +29,15 @@
     padding: 15px;
     width: 400px;
 }
+
+i {
+   width: 200;
+   margin: auto;
+}
+
+.button-card {
+    width: 200px;
+    margin: auto;
+    position: absolute;
+    left: 30px;
+}

@@ -13,33 +13,38 @@ class Dashboard extends Component {
     }
 
     render() {
-        return <div className="Dashboard">
-
-            <h1 className="title">Dashboard</h1>
-
-            <div className="layout">
-
-                <div className="row">
-                    <div className="col-lg-4 col-sm-12 col-md-4">
-                        <h1 className="text-center">Manage Users</h1>
-                        <div className="jumbotron rounded-circle">
-                            <div className="m-0">
-
-                                <button className="btn btn-success btn-center" onClick={this.manageUser}>
-                                    <span><i class="fas fa-users"></i></span>
-                                </button>
-
-                            </div>
-                            
+        return <div className="clearfix container Dashboard">
+            <h1 className="display-3 text-center">Dashboard</h1>
+            
+            <div className="row clearfix">
+               
+                <div className="col-lg-3 bg-success rounded">
+                    <div className="card">
+                        <div className="card-body">
+                            <button className="btn btn-lg button-card" ><i class="fas fa-users"></i>USERS</button>
                         </div>
-                    </div>
-
-                   
+                    </div>       
                 </div>
+
+
+                <div className="col-lg-3 bg-success rounded">
+                    <div className="card">
+                        <div className="card-body">
+                        <button className="btn btn-lg button-card" >
+                        <i class="fas fa-chalkboard-teacher"></i>
+                            <span className="mx">INSTRUCTORS</span>
+                        </button>
+                        </div>
+                    </div>       
+                </div>               
 
                 
             </div>
+                
 
+
+          
+            
         </div>
     }
 }
