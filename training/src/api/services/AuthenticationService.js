@@ -24,7 +24,7 @@ class AuthenticationService {
     }
 
     authenticatedBasic=(username,password)=> {       
-        return axios.get('http://localhost:8086/training/users',{
+        return axios.get('http://localhost:8086/training/authentications',{
             headers:{
                 authorization:this.basicHeaderAuth(username,password)
             }

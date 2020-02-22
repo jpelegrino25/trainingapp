@@ -3,8 +3,10 @@ package com.julioluis.trainingrest.services;
 
 
 import com.julioluis.trainingrest.entities.Authority;
+import com.julioluis.trainingrest.entities.Status;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.repositories.UserRepository;
+import com.julioluis.trainingrest.utils.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -74,6 +76,19 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAllUser() {
-        return userRepository.findAll();
+        return userRepository.getAllActiveUsers();
+    }
+
+    public User findById(Integer id) {
+       Optional<User> user=userRepository.findById(id);
+        return user.get();
+    }
+
+    public void deleteUser(Integer id) {
+        User user=findById(id);
+
+        user.setStatus(new Status(StatusEnum.INACTIVE.getStatus()));
+        userRepository.save(user);
+
     }
 }

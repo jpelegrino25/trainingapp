@@ -1,6 +1,7 @@
 package com.julioluis.trainingrest.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -23,7 +24,6 @@ public class Rol {
     private List<User> users;
 
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference
     @ManyToMany
     @JoinTable(name = "rol_auth",
     joinColumns = @JoinColumn(name = "roles_id",
