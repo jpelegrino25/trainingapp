@@ -23,6 +23,10 @@ public class User {
     private String username;
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name = "status")
+    private Status status;
+
 
     @JoinColumn(name = "roles_id")
     @ManyToOne
@@ -82,5 +86,13 @@ public class User {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }
