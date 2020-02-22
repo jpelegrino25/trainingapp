@@ -1,11 +1,21 @@
 import React,{Component} from 'react'
 import './dashboard.css'
+import UserService from '../../api/services/UserService.js'
 
 class Dashboard extends Component {
 
 
     constructor(props) {
         super(props)
+    }
+
+    componentDidMount() {
+        UserService.findAll()
+        .then(data=>{
+            console.log(data);
+        }).catch(err=>{
+            console.log(err)
+        })
     }
 
     manageUser=()=> {
@@ -21,7 +31,7 @@ class Dashboard extends Component {
                 <div className="col-lg-3 bg-success rounded">
                     <div className="card">
                         <div className="card-body">
-                            <button className="btn btn-lg button-card" ><i class="fas fa-users"></i>USERS</button>
+                            <button className="btn btn-lg button-card" ><i className="fas fa-users"></i>USERS</button>
                         </div>
                     </div>       
                 </div>
@@ -31,7 +41,7 @@ class Dashboard extends Component {
                     <div className="card">
                         <div className="card-body">
                         <button className="btn btn-lg button-card" >
-                        <i class="fas fa-chalkboard-teacher"></i>
+                        <i className="fas fa-chalkboard-teacher"></i>
                             <span className="mx">INSTRUCTORS</span>
                         </button>
                         </div>

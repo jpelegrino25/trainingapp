@@ -1,6 +1,7 @@
 import axios from 'axios'
-
+import Constant from  '../../Constant.js'
 const USER_AUTHENTICATED='userAuthenticated'
+
 class AuthenticationService {
 
     registerUser=(username,password)=>{      
