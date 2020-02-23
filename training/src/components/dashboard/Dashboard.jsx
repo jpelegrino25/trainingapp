@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import './dashboard.css'
 import UserService from '../../api/services/UserService.js'
+import {Link} from 'react-router-dom'
 
 class Dashboard extends Component {
 
@@ -10,12 +11,7 @@ class Dashboard extends Component {
     }
 
     componentDidMount() {
-        UserService.findAll()
-        .then(data=>{
-            console.log(data);
-        }).catch(err=>{
-            console.log(err)
-        })
+        
     }
 
     manageUser=()=> {
@@ -31,7 +27,8 @@ class Dashboard extends Component {
                 <div className="col-lg-3 bg-success rounded">
                     <div className="card">
                         <div className="card-body">
-                            <button className="btn btn-lg button-card" ><i className="fas fa-users"></i>USERS</button>
+                            <button className="btn btn-lg button-card" ><Link to="/users">
+                                <i className="fas fa-users"></i>USERS</Link></button>
                         </div>
                     </div>       
                 </div>

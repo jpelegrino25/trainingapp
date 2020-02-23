@@ -16,13 +16,26 @@ class AuthenticationService {
        
         axios.interceptors.request
         .use((config)=>{
-            if(this.IsUserLogin())
+            if(this.IsUserLogin()) {
             config.headers.authorization=authorizationHeader
+            sessionStorage.setItem('authorizationHeader',authorizationHeader)
+         }
 
             return config;
         })
 
     }
+
+    getInterceptor=()=> {
+        let interceptors=sessionStorage.getItem('authorizationHeader');
+        return interceptors;
+    }
+
+    getAuthenticatedUser=()=> {
+        let userAuthenticated=sessionStorage.getItem(USER_AUTHENTICATED)
+        return userAuthenticated;
+    }
+    
 
     authenticatedBasic=(username,password)=> {       
         return axios.get('http://localhost:8086/training/authentications',{
