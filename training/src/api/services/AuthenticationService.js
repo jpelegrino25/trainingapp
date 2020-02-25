@@ -35,6 +35,15 @@ class AuthenticationService {
         let userAuthenticated=sessionStorage.getItem(USER_AUTHENTICATED)
         return userAuthenticated;
     }
+
+    handleInterceptor=()=> {
+        let userLogin=this.getAuthenticatedUser();
+        if(userLogin) {
+            let interceptor=this.getInterceptor();
+            if(interceptor)
+            this.axiosInterceptor(interceptor)
+        }
+    }
     
 
     authenticatedBasic=(username,password)=> {       

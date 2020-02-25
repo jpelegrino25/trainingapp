@@ -24,6 +24,10 @@ class UserService {
         return axios.delete('http://localhost:8086/training/'+URI+userId);
     }
 
+    getRoles=()=> {
+        return axios.get('http://localhost:8086/training/'+URI+'roles');
+    }
+
 }
 
 export default new UserService();

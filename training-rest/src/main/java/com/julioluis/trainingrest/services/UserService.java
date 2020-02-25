@@ -3,8 +3,10 @@ package com.julioluis.trainingrest.services;
 
 
 import com.julioluis.trainingrest.entities.Authority;
+import com.julioluis.trainingrest.entities.Rol;
 import com.julioluis.trainingrest.entities.Status;
 import com.julioluis.trainingrest.entities.User;
+import com.julioluis.trainingrest.repositories.RolRepository;
 import com.julioluis.trainingrest.repositories.UserRepository;
 import com.julioluis.trainingrest.utils.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -22,6 +25,11 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private RolRepository rolRepository;
+
+
 
 
     @Override
@@ -58,9 +66,12 @@ public class UserService implements UserDetailsService {
 
 
     public void saveUser(User user) {
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        String pass=encoder.encode(user.getPassword());
-        user.setPassword(pass);
+        if(Objects.isNull(user.getId())) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            String pass = encoder.encode(user.getPassword());
+            user.setPassword(pass);
+            user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
+        }
         userRepository.save(user);
     }
 
@@ -90,5 +101,9 @@ public class UserService implements UserDetailsService {
         user.setStatus(new Status(StatusEnum.INACTIVE.getStatus()));
         userRepository.save(user);
 
+    }
+
+    public List<Rol> findAllRoles() {
+        return rolRepository.findAll();
     }
 }

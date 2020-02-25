@@ -15,13 +15,7 @@ class UserComponent extends React.Component {
     }
 
     componentDidMount() {
-
-        let userLogin=AuthenticationService.getAuthenticatedUser();
-        if(userLogin) {
-            let interceptor=AuthenticationService.getInterceptor();
-            if(interceptor)
-            AuthenticationService.axiosInterceptor(interceptor)
-        }
+        AuthenticationService.handleInterceptor();
         this.userRefresh();
 
        
@@ -40,16 +34,21 @@ class UserComponent extends React.Component {
         })
     }
 
-    editUser=(userId,e)=> {
-        console.log(`Edit User ${userId}`)
+    editUser=(userId,e)=> {        
+        this.props.history.push(`/users/${userId}`);
     }
 
-    deleteUser=(userId,e)=> {
-        console.log(`Delete User ${userId}`) 
+    deleteUser=(userId,e)=> {       
+        UserService.delete(userId)
+        .then(()=>{
+            this.userRefresh()
+        })
+        
     }
 
     addNewUser=()=> {
-        console.log('Add new User')
+        const userId=-1;
+        this.props.history.push(`/users/${userId}`);
     }
 
     render() {
