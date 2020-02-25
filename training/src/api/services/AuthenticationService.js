@@ -1,6 +1,7 @@
 import axios from 'axios'
-
+import Constant from  '../../Constant.js'
 const USER_AUTHENTICATED='userAuthenticated'
+
 class AuthenticationService {
 
     registerUser=(username,password)=>{      
@@ -15,13 +16,35 @@ class AuthenticationService {
        
         axios.interceptors.request
         .use((config)=>{
-            if(this.IsUserLogin())
+            if(this.IsUserLogin()) {
             config.headers.authorization=authorizationHeader
+            sessionStorage.setItem('authorizationHeader',authorizationHeader)
+         }
 
             return config;
         })
 
     }
+
+    getInterceptor=()=> {
+        let interceptors=sessionStorage.getItem('authorizationHeader');
+        return interceptors;
+    }
+
+    getAuthenticatedUser=()=> {
+        let userAuthenticated=sessionStorage.getItem(USER_AUTHENTICATED)
+        return userAuthenticated;
+    }
+
+    handleInterceptor=()=> {
+        let userLogin=this.getAuthenticatedUser();
+        if(userLogin) {
+            let interceptor=this.getInterceptor();
+            if(interceptor)
+            this.axiosInterceptor(interceptor)
+        }
+    }
+    
 
     authenticatedBasic=(username,password)=> {       
         return axios.get('http://localhost:8086/training/authentications',{

@@ -1,5 +1,6 @@
 package com.julioluis.trainingrest.resources;
 
+import com.julioluis.trainingrest.entities.Rol;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,14 @@ public class UserResource {
     public ResponseEntity<Void> delete(@PathVariable(name = "userId") Integer id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(path = "roles")
+    public ResponseEntity<List<Rol>> getRoles() {
+        List<Rol> rolList=userService.findAllRoles();
+
+        return ResponseEntity.ok()
+                .body(rolList);
     }
 
 

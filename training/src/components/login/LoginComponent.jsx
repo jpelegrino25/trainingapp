@@ -31,6 +31,7 @@ class LoginComponent extends Component {
         
         AuthenticationService.authenticatedBasic(username,password)
         .then(()=> {
+            AuthenticationService.registerUser(username,password)
             this.props.history.push("/dashboard");
         })
         .catch(err=>console.log(err));
