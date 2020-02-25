@@ -26,7 +26,8 @@ class LoginComponent extends Component {
         })
     }
 
-    login=()=> {
+    login=(e)=> {
+        e.preventDefault();
         const {username,password}=this.state.user;
         
         AuthenticationService.authenticatedBasic(username,password)
@@ -41,47 +42,54 @@ class LoginComponent extends Component {
     render() {
         const {username,password}=this.state.user;
         return (
-            <div className="LoginComponent container">
+            <div className="container">
 
+                <h1 className="text-center"></h1>
 
-                <div className="wrapper fadeInDown">
-                    <div id="formContent">
-                        
-                        <h2 className="active"> Sign In </h2>
-                        <h2 className="inactive underlineHover">Sign Up </h2>
-
-                    
-                        <div className="fadeIn first">
-                        {/* <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" /> */}
+                <div className="Login">
+                    <form>
+                        <div className="form-row mb-3">
+                            <div className="col">
+                                <label>User Name:</label>
+                            </div>
+                            <div className="col">
+                                <input type="text" 
+                                value={username}
+                                name="username"
+                                onChange={this.handleChangeField}
+                                placeholder="User Name"
+                                className="form-control"/>
+                            </div>
                         </div>
 
-                        
-                        <div>
-                            <input type="text" id="login" className="fadeIn second"                            
-                            name="username"
-                            placeholder="login" 
-                            value={username}
-                            onChange={this.handleChangeField}
-                            
-                            />
-
-                            <input type="text" id="password" className="fadeIn third"
-                            name="password" 
-                            placeholder="password" 
-                            value={password}
-                            onChange={this.handleChangeField}
-                            />
-                            <input type="button" onClick={this.login} className="fadeIn fourth" value="Log In"/>
+                        <div className="form-row mb-3">
+                            <div className="col">
+                                <label>Password:</label>
+                            </div>
+                            <div className="col">
+                                <input type="password"
+                                value={password}
+                                name="password"
+                                placeholder="Password"
+                                onChange={this.handleChangeField} 
+                                className="form-control"/>
+                            </div>
                         </div>
 
-                        
-                        <div id="formFooter">
-                        {/* <a className="underlineHover" href="http://google.com" target="_blank">Forgot Password?</a> */}
+                        <div className="form-row">
+                            <div className="col">
+                            <button className="btn btn-primary" 
+                            onClick={this.login}>Login</button>
+                            </div>                           
                         </div>
 
-                    </div>
+                       
+
+
+                    </form>
                 </div>
 
+               
                 
             </div>
         )
