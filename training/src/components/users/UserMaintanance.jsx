@@ -13,7 +13,7 @@ const USER_DEFAULT={
     "status":{id:1}
 }
 
-class EditUserComponent extends React.Component {
+class UserMaintanance extends React.Component {
 
     constructor(props) {
         super(props);
@@ -157,7 +157,7 @@ class EditUserComponent extends React.Component {
             className="form-control"/>
         </div>
 
-        <div className="form-group">
+       {createRender && <div className="form-group">
             <label>Password</label>
             <input type="password" 
             placeholder="Password"
@@ -165,7 +165,7 @@ class EditUserComponent extends React.Component {
             value={user && user.password || ''}
             onChange={this.changeField}
             className="form-control"/>
-        </div>
+        </div>}
 
       <div className="form-group">
             <label>Rol</label>
@@ -203,4 +203,4 @@ class EditUserComponent extends React.Component {
     }
 }
 
-export default EditUserComponent;
+export default UserMaintanance;

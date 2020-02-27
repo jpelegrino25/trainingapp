@@ -37,10 +37,8 @@ class Dashboard extends Component {
                 <div className="col-lg-3 bg-success rounded">
                     <div className="card">
                         <div className="card-body">
-                        <button className="btn btn-lg button-card" >
-                        <i className="fas fa-chalkboard-teacher"></i>
-                            <span className="mx">INSTRUCTORS</span>
-                        </button>
+                        <button className="btn btn-lg button-card" ><Link to="/trainings">
+                        <i className="fas fa-address-book"></i>Training</Link></button>
                         </div>
                     </div>       
                 </div>               

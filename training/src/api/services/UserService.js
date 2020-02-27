@@ -1,31 +1,31 @@
 import axios from 'axios'
-
+import * as Constant from '../../Constant.js'
 
 const URI='users/';
 class UserService {
 
     findAll=()=> {
-        return axios.get('http://localhost:8086/training/'+URI);
+        return axios.get(Constant.URL_BASE+URI);
     }
 
     findById=(userId)=> {
-        return axios.get('http://localhost:8086/training/'+URI+userId);
+        return axios.get(Constant.URL_BASE+URI+userId);
     }
 
     save=(user)=> {
-        return axios.post('http://localhost:8086/training/'+URI,user);
+        return axios.post(Constant.URL_BASE+URI,user);
     }
 
     update=(user)=> {
-        return axios.put('http://localhost:8086/training/'+URI,user);
+        return axios.put(Constant.URL_BASE+URI,user);
     }
 
     delete=(userId)=> {
-        return axios.delete('http://localhost:8086/training/'+URI+userId);
+        return axios.delete(Constant.URL_BASE+URI+userId);
     }
 
     getRoles=()=> {
-        return axios.get('http://localhost:8086/training/'+URI+'roles');
+        return axios.get(Constant.URL_BASE+URI+'roles');
     }
 
 }
