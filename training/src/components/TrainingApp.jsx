@@ -7,6 +7,9 @@ import AuthenticatedRoute from './AuthenticatedRoute';
 import UserMaintanance from './users/UserMaintanance';
 import Training from './training/Training'
 import TrainingMaintanance from './training/TrainingMaintanance';
+import Session from './session/Session';
+import SessionMaintanance from './session/SessionMaintanance'
+import DatePickers from './DatePickers';
 
 class TrainingApp extends Component {
 
@@ -23,6 +26,11 @@ class TrainingApp extends Component {
                     <AuthenticatedRoute path="/users" component={UserComponent}/>
                     <AuthenticatedRoute path="/trainings/:id" component={TrainingMaintanance}/>
                     <AuthenticatedRoute path="/trainings" component={Training}/>
+                    <AuthenticatedRoute path="/sessions/:id" component={SessionMaintanance}/>
+                    <AuthenticatedRoute path="/sessions" component={Session}/>
+                    <Route path="/datepicker"  component={DatePickers}/>
+                    
+                    
                     
 
                 </Switch>

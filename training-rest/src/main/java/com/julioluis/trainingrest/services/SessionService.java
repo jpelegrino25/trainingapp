@@ -11,4 +11,5 @@ public interface SessionService {
     void saveSession(Session session);
     void updateSession(Session session);
     void deleteSession(Integer id);
+    Session lastSession();
 }

@@ -4,6 +4,7 @@ import AuthenticationService from '../../api/services/AuthenticationService';
 import './training.css'
 import TrainingService from '../../api/services/TrainingService';
 
+
 const TRAINING_DEFAULT={
     "id": null,
     "description": "",   
@@ -109,7 +110,7 @@ class TrainingMaintanance extends React.Component {
             <div className="container">
                 {editRender && <h1 className="text-center">Edit Training</h1>}
                 {createRender && <h1 className="text-center">Create Training</h1>}
-                <div className="bg-success trainingEditLayout">
+                <div className="bg-success maintananceLayout">
                     {renderTraining}
                     
                 </div>

@@ -11,6 +11,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 
 @SpringBootTest
@@ -39,6 +42,25 @@ public class SessionServiceTest {
         session.setTraining(training);
 
         sessionService.saveSession(session);
+
+    }
+
+    @Test
+    @Ignore
+    public void testFindLastSession() {
+//        Session session=sessionService.lastSession();
+//        System.out.println(session);
+
+        String sessionName="202002-1";
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy-MM-dd");
+
+
+        Date date=new Date();
+        LocalDate localDate=LocalDate.parse(simpleDateFormat.format(date));
+        int next=Integer.valueOf(sessionName.substring(sessionName.length()-1));
+        next++;
+        String generate=String.valueOf(localDate.getYear())+String.valueOf(localDate.getMonthValue())+"-"+next;
+        System.out.println(generate);
 
     }
 }

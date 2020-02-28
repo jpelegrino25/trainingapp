@@ -41,6 +41,15 @@ class Dashboard extends Component {
                         <i className="fas fa-address-book"></i>Training</Link></button>
                         </div>
                     </div>       
+                </div>   
+
+                 <div className="col-lg-3 bg-success rounded">
+                    <div className="card">
+                        <div className="card-body">
+                        <button className="btn btn-lg button-card" ><Link to="/sessions">
+                        <i className="fas fa-address-book"></i>Session</Link></button>
+                        </div>
+                    </div>       
                 </div>               
 
                 

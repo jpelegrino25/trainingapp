@@ -2,6 +2,7 @@ package com.julioluis.trainingrest.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "session")
@@ -10,6 +11,9 @@ public class Session {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "session_id")
     private Integer id;
+    @JoinColumn(name = "user_id")
+    @ManyToOne
+    private User user;
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "session_date")
     private Date startDate;
@@ -19,12 +23,12 @@ public class Session {
     @JoinColumn(name = "status")
     @ManyToOne
     private Status status;
-    @JoinColumn(name = "user_id")
-    @ManyToOne
-    private User user;
+
     @JoinColumn(name = "training_id")
     @ManyToOne
     private Training training;
+    @Column(name = "session_name")
+    private String sessionName;
 
     public Integer getId() {
         return id;
@@ -32,6 +36,14 @@ public class Session {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getStartDate() {
@@ -66,13 +78,7 @@ public class Session {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
-    }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
     public Training getTraining() {
         return training;
@@ -81,4 +87,14 @@ public class Session {
     public void setTraining(Training training) {
         this.training = training;
     }
+
+    public String getSessionName() {
+        return sessionName;
+    }
+
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
+    }
+
+
 }
