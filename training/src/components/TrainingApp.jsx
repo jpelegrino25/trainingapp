@@ -10,6 +10,7 @@ import TrainingMaintanance from './training/TrainingMaintanance';
 import Session from './session/Session';
 import SessionMaintanance from './session/SessionMaintanance'
 import DatePickers from './DatePickers';
+import Navigation from './navigation/Navigation';
 
 class TrainingApp extends Component {
 
@@ -18,7 +19,8 @@ class TrainingApp extends Component {
         return(
             <Router>
                 <>
-                <Switch>
+                <Navigation/>
+                <Switch>               
                     <Route path="/" exact component={LoginComponent}/>
                     <Route path="/login"  component={LoginComponent}/>
                     <AuthenticatedRoute path="/dashboard" component={Dashboard}/>

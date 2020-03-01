@@ -193,7 +193,7 @@ class UserMaintanance extends React.Component {
             <div className="container">
                 {editRender && <h1 className="text-center">Edit User</h1>}
                 {createRender && <h1 className="text-center">Create User</h1>}
-                <div className="bg-success maintananceLayout">
+                <div className="maintananceLayout">
                     {renderUser}
                     
                 </div>

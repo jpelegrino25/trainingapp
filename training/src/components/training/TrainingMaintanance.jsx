@@ -110,7 +110,7 @@ class TrainingMaintanance extends React.Component {
             <div className="container">
                 {editRender && <h1 className="text-center">Edit Training</h1>}
                 {createRender && <h1 className="text-center">Create Training</h1>}
-                <div className="bg-success maintananceLayout">
+                <div className="maintananceLayout">
                     {renderTraining}
                     
                 </div>
