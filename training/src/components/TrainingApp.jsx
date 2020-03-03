@@ -11,6 +11,7 @@ import Session from './session/Session';
 import SessionMaintanance from './session/SessionMaintanance'
 import DatePickers from './DatePickers';
 import Navigation from './navigation/Navigation';
+import Logout from './logout/Logout';
 
 class TrainingApp extends Component {
 
@@ -30,7 +31,7 @@ class TrainingApp extends Component {
                     <AuthenticatedRoute path="/trainings" component={Training}/>
                     <AuthenticatedRoute path="/sessions/:id" component={SessionMaintanance}/>
                     <AuthenticatedRoute path="/sessions" component={Session}/>
-                    <Route path="/datepicker"  component={DatePickers}/>
+                    <Route path="/logout"  component={Logout}/>
                     
                     
                     

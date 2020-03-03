@@ -1,6 +1,7 @@
 import React from 'react'
 import AuthenticationService from '../../api/services/AuthenticationService.js';
 import TrainingService from '../../api/services/TrainingService.js'
+import * as Constant from '../../Constant.js'
 
 class Training extends React.Component {
 
@@ -15,7 +16,7 @@ class Training extends React.Component {
 
     componentDidMount() {
         AuthenticationService.handleInterceptor();
-        this.trainingRefresh();
+        this.trainingRefresh();        
     }
 
     loadTrainings=() => {

@@ -1,9 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import AuthenticationService from '../../api/services/AuthenticationService'
 
 class Navigation extends React.Component {
 
+    constructor(props) {
+        super(props)
+        
+    }
+
+    
+
     render() {
+        let userLogin=AuthenticationService.IsUserLogin();
+
         return <div>
            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
             <Link className="navbar-brand text-white" to="/dashboard">TrainingApp</Link>
@@ -23,10 +33,10 @@ class Navigation extends React.Component {
                
                <ul className="navbar-nav justify-content-end navbar-collapse">
                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/login">Login</Link>
+                        {!userLogin && <Link className="nav-link text-white" to="/login">Login</Link>}
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-white"  to="/logout">Logout</Link>
+                        {userLogin && <Link className="nav-link text-white"  to="/logout">Logout</Link>}
                     </li>
                </ul>
                
@@ -37,4 +47,4 @@ class Navigation extends React.Component {
     }
 }
 
-export default Navigation;
+export default withRouter(Navigation);

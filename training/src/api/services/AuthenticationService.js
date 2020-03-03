@@ -1,6 +1,8 @@
 import axios from 'axios'
 import Constant from  '../../Constant.js'
 const USER_AUTHENTICATED='userAuthenticated'
+const AUTHORIZATION_HEADER='authorizationHeader'
+const AUTHORITIES='authorities'
 
 class AuthenticationService {
 
@@ -18,7 +20,7 @@ class AuthenticationService {
         .use((config)=>{
             if(this.IsUserLogin()) {
             config.headers.authorization=authorizationHeader
-            sessionStorage.setItem('authorizationHeader',authorizationHeader)
+            sessionStorage.setItem(AUTHORIZATION_HEADER,authorizationHeader)
          }
 
             return config;
@@ -27,7 +29,7 @@ class AuthenticationService {
     }
 
     getInterceptor=()=> {
-        let interceptors=sessionStorage.getItem('authorizationHeader');
+        let interceptors=sessionStorage.getItem(AUTHORIZATION_HEADER);
         return interceptors;
     }
 
@@ -54,8 +56,20 @@ class AuthenticationService {
         })
     }
 
+    getAuthorities=()=> {
+        let authorities=sessionStorage.getItem(AUTHORITIES);
+        return authorities;
+    }
+
     unRegisterUser=()=>{
         sessionStorage.removeItem(USER_AUTHENTICATED);
+        sessionStorage.removeItem(AUTHORIZATION_HEADER)
+        sessionStorage.removeItem(AUTHORITIES)
+    }
+
+    hasAuthority=(authorities,authorityName)=> {
+        let authResult=authorities.findIndex(auth=> auth.description===authorityName);
+        return authResult>=0?true:false;
     }
 
     IsUserLogin=()=> {

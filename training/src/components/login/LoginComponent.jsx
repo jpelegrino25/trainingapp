@@ -31,9 +31,11 @@ class LoginComponent extends Component {
         const {username,password}=this.state.user;
         
         AuthenticationService.authenticatedBasic(username,password)
-        .then(()=> {
+        .then((response)=> {
             AuthenticationService.registerUser(username,password)
+            sessionStorage.setItem('authorities',JSON.stringify(response.data));
             this.props.history.push("/dashboard");
+            
         })
         .catch(err=>console.log(err));
 
@@ -42,7 +44,7 @@ class LoginComponent extends Component {
     render() {
         const {username,password}=this.state.user;
         return (
-            <div className="container">
+            <div className="container my-5">
 
                 <h1 className="text-center"></h1>
 
