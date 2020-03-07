@@ -14,6 +14,7 @@ import Navigation from './navigation/Navigation';
 import Logout from './logout/Logout';
 import Register from './users/Register';
 import RegisterSession from './registration/RegisterSession';
+import RegisterConfirmation from './registerconfirmation/RegisterConfirmation';
 
 class TrainingApp extends Component {
 
@@ -34,6 +35,7 @@ class TrainingApp extends Component {
                     <AuthenticatedRoute path="/sessions/:id" component={SessionMaintanance}/>
                     <AuthenticatedRoute path="/sessions" component={Session}/>
                     <AuthenticatedRoute path="/availableSessions" component={RegisterSession}/>
+                    <AuthenticatedRoute path="/confirmationreg/:userId/:sessionId" component={RegisterConfirmation}/>
                     <Route path="/register"  component={Register}/>
                     <Route path="/logout"  component={Logout}/>
                     

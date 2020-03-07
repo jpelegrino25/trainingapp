@@ -11,8 +11,6 @@ class Dashboard extends Component {
         super(props)
     }
 
-  
-
     manageUser=()=> {
         this.props.history.push("/users");
     }
@@ -57,7 +55,18 @@ class Dashboard extends Component {
                         <i className="fas fa-address-book"></i>Session</Link></button>
                         </div>
                     </div>       
-                </div> }              
+                </div> } 
+
+                {AuthenticationService.
+               hasAuthority(authorities,
+               Constant.AUTH_AVAILABLE_SESSION) && <div className="col-lg-3 bg-success rounded">
+                    <div className="card">
+                        <div className="card-body">
+                        <button className="btn btn-lg button-card" ><Link to="/availableSessions">
+                        <i className="fas fa-address-book"></i>Available Sessions</Link></button>
+                        </div>
+                    </div>       
+                </div>  }              
 
                 
             </div>

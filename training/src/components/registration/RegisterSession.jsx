@@ -44,14 +44,15 @@ class RegisterSession extends React.Component {
     }
 
     enroll=(userId,sessionId)=> {
-        console.log('UserId:: '+ userId+ ' SessionId:: '+ sessionId)
+        
         let registerSession={...this.state.registerSession}
         registerSession.registerSessionId.session.id=sessionId;
         registerSession.registerSessionId.user.id=userId;
 
         RegisterService.subscribeToSession(registerSession)
         .then(()=>{
-            console.log('Successful Save')
+            console.log('Successful Save');
+            this.props.history.push(`/confirmationreg/${userId}/${sessionId}`)
         }).catch(err=>console.log(err))
     }
 
