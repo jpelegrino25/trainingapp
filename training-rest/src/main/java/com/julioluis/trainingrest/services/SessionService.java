@@ -12,4 +12,5 @@ public interface SessionService {
     void updateSession(Session session);
     void deleteSession(Integer id);
     Session lastSession();
+    List<Session> findAvailableSessions(Integer userId);
 }

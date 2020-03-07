@@ -8,6 +8,11 @@ class UserService {
         return axios.get(Constant.URL_BASE+URI);
     }
 
+    findTrainers=()=> {
+        return axios.get(Constant.URL_BASE+URI+'trainers');
+    }
+
+
     findById=(userId)=> {
         return axios.get(Constant.URL_BASE+URI+userId);
     }

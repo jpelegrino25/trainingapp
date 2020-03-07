@@ -26,6 +26,14 @@ public class UserResource {
                 .body(userList);
     }
 
+    @GetMapping(path = "trainers")
+    public ResponseEntity<List<User>> getInstructors() {
+        List<User> trainers=userService.findTrainers();
+
+        return ResponseEntity.ok()
+                .body(trainers);
+    }
+
     @GetMapping(path = "{userId}")
     public ResponseEntity<User>
         getOne(@PathVariable(name = "userId") Integer id) {

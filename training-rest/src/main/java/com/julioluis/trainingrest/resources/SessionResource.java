@@ -31,6 +31,17 @@ public class SessionResource {
                 .body(session);
     }
 
+    @GetMapping(path = "availables/{userId}")
+    public ResponseEntity<List<Session>>
+        findAllAvailableSessions(@PathVariable(name = "userId") Integer userId) {
+        List<Session> sessionList=sessionService.findAvailableSessions(userId);
+
+        return ResponseEntity.ok()
+                .body(sessionList);
+    }
+
+
+
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody Session session) {
         sessionService.saveSession(session);

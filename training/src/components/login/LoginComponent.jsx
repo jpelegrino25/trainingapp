@@ -32,13 +32,19 @@ class LoginComponent extends Component {
         
         AuthenticationService.authenticatedBasic(username,password)
         .then((response)=> {
-            AuthenticationService.registerUser(username,password)
+            AuthenticationService.registerUser(username,password);
+            AuthenticationService.handleInterceptor();
             sessionStorage.setItem('authorities',JSON.stringify(response.data));
             this.props.history.push("/dashboard");
             
         })
         .catch(err=>console.log(err));
 
+    }
+
+    register=(e)=> {        
+        AuthenticationService.registerUser('trainees','123456')
+        this.props.history.push('/register/');
     }
 
     render() {
@@ -80,9 +86,14 @@ class LoginComponent extends Component {
 
                         <div className="form-row">
                             <div className="col">
-                            <button className="btn btn-primary" 
-                            onClick={this.login}>Login</button>
-                            </div>                           
+                                <button className="btn btn-success" 
+                                onClick={this.login}>Login</button>
+                                </div>  
+
+                                <div className="col">
+                                <button className="btn btn-primary" 
+                                onClick={this.register}>Register</button>
+                                </div>                            
                         </div>
 
                        

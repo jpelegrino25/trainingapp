@@ -10,6 +10,7 @@ class AuthenticationService {
         
         let authorizationHeader=this.basicHeaderAuth(username,password);
             sessionStorage.setItem(USER_AUTHENTICATED,username);  
+            sessionStorage.setItem(AUTHORIZATION_HEADER,authorizationHeader)
             this.axiosInterceptor(authorizationHeader)          
       
     }
@@ -19,8 +20,7 @@ class AuthenticationService {
         axios.interceptors.request
         .use((config)=>{
             if(this.IsUserLogin()) {
-            config.headers.authorization=authorizationHeader
-            sessionStorage.setItem(AUTHORIZATION_HEADER,authorizationHeader)
+            config.headers.authorization=authorizationHeader            
          }
 
             return config;
@@ -56,7 +56,7 @@ class AuthenticationService {
         })
     }
 
-    getAuthorities=()=> {
+    getLoginUser=()=> {
         let authorities=sessionStorage.getItem(AUTHORITIES);
         return authorities;
     }

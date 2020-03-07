@@ -14,4 +14,8 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     Optional<User> findById(Integer id);
     @Query(value = "SELECT * from user WHERE status=1", nativeQuery = true)
     List<User> getAllActiveUsers();
+    @Query(value = "SELECT u FROM User u WHERE u.status.id=1 and u.rol.id=2")
+    List<User> getAllInstructors();
+
+
 }

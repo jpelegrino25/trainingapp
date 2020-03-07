@@ -1,7 +1,9 @@
 package com.julioluis.trainingrest.services.impl;
 
 import com.julioluis.trainingrest.entities.Session;
+import com.julioluis.trainingrest.entities.SessionRegister;
 import com.julioluis.trainingrest.entities.Status;
+import com.julioluis.trainingrest.repositories.SessionRegisterRepository;
 import com.julioluis.trainingrest.repositories.SessionRepository;
 import com.julioluis.trainingrest.repositories.UserRepository;
 import com.julioluis.trainingrest.services.SessionService;
@@ -11,9 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class SessionServiceImpl implements SessionService {
@@ -22,6 +22,9 @@ public class SessionServiceImpl implements SessionService {
     private SessionRepository sessionRepository;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SessionRegisterRepository sessionRegisterRepository;
 
     @Override
     public List<Session> findAll() {
@@ -56,6 +59,26 @@ public class SessionServiceImpl implements SessionService {
     public Session lastSession() {
         Session session=sessionRepository.findLastSession();
         return session;
+    }
+
+    @Override
+    public List<Session> findAvailableSessions(Integer userId) {
+        Collection<Integer> criteria=this.getRegisteredSessionsByUser(userId);
+        List<Session> sessionList=sessionRepository.findAvailableSessionByCriteria(criteria);
+        return sessionList;
+    }
+
+    private Collection<Integer> getRegisteredSessionsByUser(Integer userId) {
+        List<SessionRegister> sessionRegisterList=sessionRegisterRepository
+                .findSessionRegisterByUser(userId);
+
+        Collection<Integer> criteriaList=new ArrayList<>();
+
+       StringBuilder sb=new StringBuilder();
+        for(SessionRegister sessionRegister : sessionRegisterList) {
+           criteriaList.add(sessionRegister.getRegisterSessionId().getSession().getId());
+        }
+        return criteriaList;
     }
 
     private String generateSessionName(Session session) {

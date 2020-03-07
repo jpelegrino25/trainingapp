@@ -18,7 +18,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        let authorities=JSON.parse(AuthenticationService.getAuthorities()).rol.authorities;
+        let authorities=JSON.parse(AuthenticationService.getLoginUser()).rol.authorities;
         
         return <div className="clearfix container Dashboard">
             <h1 className="display-3 text-center">Dashboard</h1>

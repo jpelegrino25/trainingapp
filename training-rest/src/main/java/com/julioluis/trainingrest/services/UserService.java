@@ -90,6 +90,10 @@ public class UserService implements UserDetailsService {
         return userRepository.getAllActiveUsers();
     }
 
+    public List<User> findTrainers() {
+        return userRepository.getAllInstructors();
+    }
+
     public User findById(Integer id) {
        Optional<User> user=userRepository.findById(id);
         return user.get();

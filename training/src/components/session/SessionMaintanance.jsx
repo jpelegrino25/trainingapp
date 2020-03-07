@@ -134,7 +134,7 @@ class SessionMaintanance extends React.Component {
     }
 
     loadUsers=()=>{
-        UserService.findAll()
+        UserService.findTrainers()
         .then(response=>{
             this.setState({userList:response.data})
         }).catch(err=>console.log(err))

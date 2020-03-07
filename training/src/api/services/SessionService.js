@@ -9,6 +9,10 @@ class SessionService {
         return axios.get(Constant.URL_BASE+URI);
     }
 
+    findAllAvailables=(userId)=>{
+        return axios.get(Constant.URL_BASE+URI+'availables/'+userId)
+    }
+
     findById=(sessionId)=> {
         return axios.get(Constant.URL_BASE+URI+sessionId);
     }

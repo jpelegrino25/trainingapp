@@ -61,6 +61,7 @@ class UserComponent extends React.Component {
                         <td>{user.lastname}</td>
                         <td>{user.emailAddress}</td>
                         <td>{user.username}</td>
+                        <td>{user.rol.description}</td>
                         <td><button 
                             onClick={(e)=>this.editUser(user.id,e)}
                             className="btn btn-primary">
@@ -85,6 +86,7 @@ class UserComponent extends React.Component {
                                 <th>Last Name</th>
                                 <th>Email Address</th>
                                 <th>Username</th>
+                                <th>Rol</th>
                                 <th colSpan="2">Action</th>
                             </tr>
                         </thead>

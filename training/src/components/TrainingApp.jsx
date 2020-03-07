@@ -12,6 +12,8 @@ import SessionMaintanance from './session/SessionMaintanance'
 import DatePickers from './DatePickers';
 import Navigation from './navigation/Navigation';
 import Logout from './logout/Logout';
+import Register from './users/Register';
+import RegisterSession from './registration/RegisterSession';
 
 class TrainingApp extends Component {
 
@@ -31,6 +33,8 @@ class TrainingApp extends Component {
                     <AuthenticatedRoute path="/trainings" component={Training}/>
                     <AuthenticatedRoute path="/sessions/:id" component={SessionMaintanance}/>
                     <AuthenticatedRoute path="/sessions" component={Session}/>
+                    <AuthenticatedRoute path="/availableSessions" component={RegisterSession}/>
+                    <Route path="/register"  component={Register}/>
                     <Route path="/logout"  component={Logout}/>
                     
                     
