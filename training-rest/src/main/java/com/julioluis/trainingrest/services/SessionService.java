@@ -1,6 +1,7 @@
 package com.julioluis.trainingrest.services;
 
 import com.julioluis.trainingrest.entities.Session;
+import com.julioluis.trainingrest.entities.SessionRegister;
 
 import java.util.List;
 
@@ -13,4 +14,6 @@ public interface SessionService {
     void deleteSession(Integer id);
     Session lastSession();
     List<Session> findAvailableSessions(Integer userId);
+    List<Session> findSessionsByInstructor(Integer teacher);
+
 }

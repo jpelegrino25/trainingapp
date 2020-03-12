@@ -19,4 +19,7 @@ public interface SessionRepository extends JpaRepository<Session,Integer> {
 
     @Query(value = "SELECT s FROM Session s WHERE s.id NOT IN :criteria")
     List<Session> findAvailableSessionByCriteria(@Param("criteria") Collection<Integer> criteria);
+
+    @Query(value = "SELECT u FROM Session u WHERE u.user.id=:teacher")
+    List<Session> findSessionsByInstructor(@Param("teacher") Integer teacher);
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("registers")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -21,5 +23,15 @@ public class SessionRegisterResource {
         return ResponseEntity.ok()
                 .build();
 
+    }
+
+    @GetMapping(path = "attendance/{userId}/{sessionId}")
+    public ResponseEntity<List<SessionRegister>> findAttendance(@PathVariable(name = "userId") Integer userId,
+                                                                @PathVariable(name = "sessionId") Integer sessionId) {
+
+        List<SessionRegister> sessionRegisterList=sessionRegisterService.findAttendanceList(userId,sessionId);
+
+        return ResponseEntity.ok()
+                .body(sessionRegisterList);
     }
 }

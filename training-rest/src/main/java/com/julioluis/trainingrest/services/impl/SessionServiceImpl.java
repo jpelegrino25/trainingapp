@@ -68,6 +68,12 @@ public class SessionServiceImpl implements SessionService {
         return sessionList;
     }
 
+    @Override
+    public List<Session> findSessionsByInstructor(Integer teacher) {
+        return sessionRepository.findSessionsByInstructor(teacher);
+    }
+
+
     private Collection<Integer> getRegisteredSessionsByUser(Integer userId) {
         List<SessionRegister> sessionRegisterList=sessionRegisterRepository
                 .findSessionRegisterByUser(userId);

@@ -1,7 +1,9 @@
 import axios from 'axios'
 import * as Constant from '../../Constant.js'
 
-const URI='sessions/'
+const URI='sessions/';
+const AVAILABLES='availables/';
+const INSTRUCTOR='instructor/'
 
 class SessionService {
 
@@ -10,7 +12,11 @@ class SessionService {
     }
 
     findAllAvailables=(userId)=>{
-        return axios.get(Constant.URL_BASE+URI+'availables/'+userId)
+        return axios.get(Constant.URL_BASE+URI+AVAILABLES+userId)
+    }
+
+    findSessionsByInstructor=(teacher)=>{
+        return axios.get(Constant.URL_BASE+URI+INSTRUCTOR+teacher)
     }
 
     findById=(sessionId)=> {
@@ -28,6 +34,8 @@ class SessionService {
     delete=(sessionId)=> {
         return axios.delete(Constant.URL_BASE+URI+sessionId);
     }
+
+    
 
 }
 

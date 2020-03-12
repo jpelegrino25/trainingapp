@@ -66,7 +66,20 @@ class Dashboard extends Component {
                         <i className="fas fa-address-book"></i>Available Sessions</Link></button>
                         </div>
                     </div>       
+                </div>  }   
+
+
+                 {AuthenticationService.
+               hasAuthority(authorities,
+               Constant.AUTH_TRAINER) && <div className="col-lg-3 bg-success rounded">
+                    <div className="card">
+                        <div className="card-body">
+                        <button className="btn btn-lg button-card" ><Link to="/trainer">
+                        <i className="fas fa-address-book"></i>Trainer Sessions</Link></button>
+                        </div>
+                    </div>       
                 </div>  }              
+           
 
                 
             </div>

@@ -13,4 +13,10 @@ public interface SessionRegisterRepository extends JpaRepository<SessionRegister
 
     @Query(value = "SELECT rs FROM SessionRegister rs WHERE rs.registerSessionId.user.id=:userId AND rs.status.id=3")
     List<SessionRegister> findSessionRegisterByUser(@Param(value = "userId") Integer userId);
+
+    @Query(value = "SELECT sr FROM SessionRegister sr" +
+            " WHERE sr.registerSessionId.session.user.id=:userId AND sr.registerSessionId.session.id=:sessionId")
+    List<SessionRegister>
+    findStudentsByProfessorAndSession(@Param("userId") Integer userId,
+                                      @Param("sessionId") Integer sessionId);
 }

@@ -1,6 +1,7 @@
 package com.julioluis.trainingrest.resources;
 
 import com.julioluis.trainingrest.entities.Session;
+import com.julioluis.trainingrest.entities.SessionRegister;
 import com.julioluis.trainingrest.services.SessionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +40,16 @@ public class SessionResource {
         return ResponseEntity.ok()
                 .body(sessionList);
     }
+
+    @GetMapping(path = "instructor/{userId}")
+    public ResponseEntity<List<Session>>
+    findInstructorSessions(@PathVariable(name = "userId") Integer userId) {
+        List<Session> sessionList=sessionService.findSessionsByInstructor(userId);
+
+        return ResponseEntity.ok()
+                .body(sessionList);
+    }
+
 
 
 
