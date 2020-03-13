@@ -50,59 +50,47 @@ class LoginComponent extends Component {
     render() {
         const {username,password}=this.state.user;
         return (
-            <div className="container my-5">
-
-                <h1 className="text-center"></h1>
-
-                <div className="Login">
-                    <form>
-                        <div className="form-row mb-3">
-                            <div className="col">
-                                <label>User Name:</label>
-                            </div>
-                            <div className="col">
-                                <input type="text" 
-                                value={username}
-                                name="username"
-                                onChange={this.handleChangeField}
-                                placeholder="User Name"
-                                className="form-control"/>
-                            </div>
+            <div className="container Login my-5">
+                <div className="main">   
+                   
+                        <header>
+                            <h1>Account Login</h1>
+                        </header>
+                    <div className="content">
+                        
+                        <div className="form-group">
+                            <input type="text" 
+                            className="form-control"
+                            placeholder="User Name"
+                            value={username}
+                            name="username"
+                            onChange={this.handleChangeField}
+                            />
                         </div>
 
-                        <div className="form-row mb-3">
-                            <div className="col">
-                                <label>Password:</label>
-                            </div>
-                            <div className="col">
-                                <input type="password"
-                                value={password}
-                                name="password"
-                                placeholder="Password"
-                                onChange={this.handleChangeField} 
-                                className="form-control"/>
-                            </div>
+                        <div className="form-group">
+                            <input type="password" 
+                            className="form-control"
+                            placeholder="Password"
+                            value={password}
+                            name="password"                                
+                            onChange={this.handleChangeField} 
+                            />
                         </div>
-
-                        <div className="form-row">
-                            <div className="col">
-                                <button className="btn btn-success" 
-                                onClick={this.login}>Login</button>
-                                </div>  
-
-                                <div className="col">
-                                <button className="btn btn-primary" 
-                                onClick={this.register}>Register</button>
-                                </div>                            
+                        <div className="form-group">
+                            <button 
+                            className="btn btn-primary btn-block"
+                            onClick={this.login}
+                            >Sign In</button>
                         </div>
+                        
+                    </div>
 
-                       
+                    <footer>
+                      <p className="text-secondary">Create an account? <a onClick={this.register} href="#">Sign up</a></p>
+                    </footer>
 
-
-                    </form>
-                </div>
-
-               
+                </div>                
                 
             </div>
         )

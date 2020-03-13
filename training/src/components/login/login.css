@@ -1,7 +1,73 @@
-.Login {
-  width: 500px;
+html {
+  box-sizing: border-box;
+}
+
+*,*::before, *::after {
+  box-sizing: inherit;
+}
+
+/*
+Global style
+*****************************/
+.Login.main {
+  width: 700px;
   margin: auto;
-  padding: 25px;
-  border: 10px solid black;
-  box-shadow:5px 10px aqua;
+  padding: 47px;
+  /* border: 1px solid black; */
+}
+
+.Login header,footer {
+  text-align: center;
+}
+
+.Login body {
+  margin: 0;
+  padding: 0; 
+  font-family: 'Source Sans Pro', sans-serif;
+  
+}
+
+.Login input, .btn  {
+  width: 360px !important;
+  
+}
+
+.Login input {
+  height: 73px !important;
+}
+
+.Login .btn {
+  margin-top: 10px;
+  height: 54px;
+  text-transform: uppercase; 
+}
+
+.Login h1 {
+  margin: 22px;
+}
+
+/*
+header
+*****************************/
+.Login footer {
+  margin-top: 25px;
+}
+/*
+footer
+*****************************/
+
+/*
+content
+*****************************/
+.Login .content {
+  width: 436px;
+  margin: auto;
+  /* border: 1px solid red; */
+  padding: 0 25px;
+  
+}
+
+
+.Login .content .form-group {
+  margin:0
 }
