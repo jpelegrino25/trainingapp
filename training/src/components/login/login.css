@@ -9,21 +9,25 @@ html {
 /*
 Global style
 *****************************/
-.Login.main {
+.Login .main {
   width: 700px;
   margin: auto;
   padding: 47px;
-  /* border: 1px solid black; */
+  border-radius: 10px;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  background: #fff;  
+  overflow: hidden;
 }
 
 .Login header,footer {
   text-align: center;
 }
 
-.Login body {
+ body {
   margin: 0;
   padding: 0; 
   font-family: 'Source Sans Pro', sans-serif;
+  background: #e6eded;
   
 }
 
@@ -71,3 +75,5 @@ content
 .Login .content .form-group {
   margin:0
 }
+
+

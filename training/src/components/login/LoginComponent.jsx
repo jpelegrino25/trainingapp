@@ -50,7 +50,9 @@ class LoginComponent extends Component {
     render() {
         const {username,password}=this.state.user;
         return (
-            <div className="container Login my-5">
+            <div className=" my-5">
+
+                <div className="Login">
                 <div className="main">   
                    
                         <header>
@@ -90,7 +92,9 @@ class LoginComponent extends Component {
                       <p className="text-secondary">Create an account? <a onClick={this.register} href="#">Sign up</a></p>
                     </footer>
 
-                </div>                
+                </div>    
+
+                </div>            
                 
             </div>
         )
