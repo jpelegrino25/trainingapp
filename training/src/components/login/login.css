@@ -10,7 +10,7 @@ html {
 Global style
 *****************************/
 .Login .main {
-  width: 700px;
+  width: 585px;
   margin: auto;
   padding: 47px;
   border-radius: 10px;
@@ -31,7 +31,7 @@ Global style
   
 }
 
-.Login input, .btn  {
+.Login input, .Login .btn  {
   width: 360px !important;
   
 }

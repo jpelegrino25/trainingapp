@@ -16,20 +16,20 @@ class Navigation extends React.Component {
 
         return <div>
            <nav className="navbar navbar-expand-lg navbar-light bg-dark">
-            <Link className="navbar-brand text-white" to="/dashboard">TrainingApp</Link>
+            <a className="navbar-brand text-white" href="#">TrainingApp</a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">  
-            <ul className="navbar-nav">
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/todos">home</Link>
-                    </li>
+
+            <ul className="navbar-nav ">
                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/todos">todos</Link>
+                        {userLogin && <Link className="nav-link text-white" to="/dashboard">Dashboard</Link>}
                     </li>
-               </ul>              
+                   
+               </ul>
+                        
                
                <ul className="navbar-nav justify-content-end navbar-collapse">
                    <li className="nav-item">

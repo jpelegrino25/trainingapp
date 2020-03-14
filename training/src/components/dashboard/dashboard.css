@@ -1,43 +1,13 @@
-.Dashboard {
-   padding: 25px;
-    
+
+.Dashboard img {
+    width: 194px;
 }
 
-.layout {
-    margin: auto;
-    width: 900px;
-    border: 5px solid gray;
-    padding: 20px;
-}
+.Dashboard .card {
+    width: 241px;
+} 
 
-.title {
-    text-align: center;
-    font-family: "Verdana","Arial";
-    font-weight: bold;
-    font-size: 3em;
-    color: cornflowerblue;
-}
-
-.btn-center {
-    display: flex;
-    justify-content: center;
-}
-
-.Dashboard-elem {
-    border: 2px solid blue;
-    margin: auto;
-    padding: 15px;
-    width: 400px;
-}
-
-i {
-   width: 200;
-   margin: auto;
-}
-
-.button-card {
-    width: 200px;
-    margin: auto;
-    position: absolute;
-    left: 30px;
+.Dashboard .card-columns {
+    column-count: 4;
+    column-gap: 4.25rem;
 }

@@ -42,10 +42,6 @@ class LoginComponent extends Component {
 
     }
 
-    register=(e)=> {        
-        AuthenticationService.registerUser('trainees','123456')
-        this.props.history.push('/register/');
-    }
 
     render() {
         const {username,password}=this.state.user;
@@ -88,9 +84,6 @@ class LoginComponent extends Component {
                         
                     </div>
 
-                    <footer>
-                      <p className="text-secondary">Create an account? <a onClick={this.register} href="#">Sign up</a></p>
-                    </footer>
 
                 </div>    
 
