@@ -15,8 +15,8 @@ const SESSION_DEFAULT={
     "startDate": new Date(),
     "location": "",
     "capacity": 0,
-    "user":{"id":-1},
-    "training": {"id": -1},
+    "user":{"id":-1,"firstname":'default'},
+    "training": {"id": -1,"description":'default'},
     "status":{"id":1}
 }
 
@@ -42,7 +42,9 @@ class SessionMaintanance extends React.Component {
             editRender:false,
             userList:[],
             trainingList:[],
-            classes:null
+            classes:null,
+            user:null,
+            training:null
 
         }
     }
@@ -60,13 +62,14 @@ class SessionMaintanance extends React.Component {
         this.loadUsers();
         this.loadTrainings();
         
-        
+       
        
     }
 
     loadSession=(sessionId)=> {
         SessionService.findById(sessionId)
-        .then(response=> {            
+        .then(response=> {   
+            
             this.setState({session:response.data,createRender:false,editRender:true,classes:useStyles})
         }).catch(err=>console.log(err))
     }
@@ -135,22 +138,30 @@ class SessionMaintanance extends React.Component {
 
     loadUsers=()=>{
         UserService.findTrainers()
-        .then(response=>{
+        .then(response=>{           
             this.setState({userList:response.data})
         }).catch(err=>console.log(err))
     }
 
     loadTrainings=()=> {
         TrainingService.fingAll()
-        .then(response=>{
+        .then(response=>{             
             this.setState({trainingList:response.data})
         }).catch(err=>console.log(err))
+    }
+
+    updateSession=(userList,trainingList)=> {
+        let sessionUpdate={...this.state.session};
+        sessionUpdate.user=userList[0];
+        sessionUpdate.training=trainingList[0];
+
+        this.setState({session:this.updateSession})
     }
 
     render() {
 
         const {session,createRender,editRender,userList,trainingList,classes}=this.state;
-
+             
         let renderUser= (session) &&      
         <form className={classes.container} noValidate>
         <div className="form-group">
@@ -196,7 +207,7 @@ class SessionMaintanance extends React.Component {
             data-type='user'
             value={session.user.id}
             onChange={this.changeField}
-            className="form-control">
+            className="form-control">            
                 {userList.map((user,index)=> {
                     return <option key={user.id} value={user.id}>{user.firstname+' '+user.lastname}</option>
                 })}                            
@@ -211,8 +222,8 @@ class SessionMaintanance extends React.Component {
             data-type='training'
             value={session.training.id}
             onChange={this.changeField}
-            className="form-control">
-                {trainingList.map((training,index)=> {
+            className="form-control">            
+                {trainingList.map((training,index)=> {                    
                     return <option key={training.id} value={training.id}>{training.description}</option>
                 })}                            
 

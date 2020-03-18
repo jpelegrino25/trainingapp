@@ -5,9 +5,11 @@
 
 .Dashboard .card {
     width: 241px;
+    
 } 
 
 .Dashboard .card-columns {
     column-count: 4;
     column-gap: 4.25rem;
+    
 }

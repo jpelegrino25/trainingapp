@@ -39,12 +39,14 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public void saveSession(Session session) {
+        this.modifyDateRequest(session);
         session.setSessionName(this.generateSessionName(session));
         sessionRepository.save(session);
     }
 
     @Override
     public void updateSession(Session session) {
+        this.modifyDateRequest(session);
         sessionRepository.save(session);
     }
 
@@ -103,5 +105,13 @@ public class SessionServiceImpl implements SessionService {
 
 
         return sessionGenerated;
+    }
+
+    private void modifyDateRequest(Session session) {
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(session.getStartDate());
+        calendar.add(Calendar.DAY_OF_MONTH,1);
+
+        session.setStartDate(calendar.getTime());
     }
 }
