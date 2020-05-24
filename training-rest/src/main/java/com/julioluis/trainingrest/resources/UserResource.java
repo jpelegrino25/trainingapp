@@ -3,6 +3,8 @@ package com.julioluis.trainingrest.resources;
 import com.julioluis.trainingrest.entities.Rol;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.services.UserService;
+import com.julioluis.trainingrest.utils.BusinessException;
+import com.julioluis.trainingrest.utils.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,16 +46,26 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity create(@RequestBody User user) {
-        userService.saveUser(user);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<User> create(@RequestBody User user) {
+        User userSaved=null;
+        try {
+           userSaved=userService.saveUser(user);
+        } catch (BusinessException e) {
+            throw new UserException(e.getMessage());
+        }
+        return ResponseEntity.ok().body(userSaved);
     }
 
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody User user) {
-        userService.saveUser(user);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<User> update(@RequestBody User user) {
+        try {
+           User userSaved= userService.saveUser(user);
+            return ResponseEntity.ok().body(userSaved);
+        } catch (BusinessException e) {
+            throw new UserException(e.getMessage());
+        }
+
     }
 
     @DeleteMapping(path = "{userId}")

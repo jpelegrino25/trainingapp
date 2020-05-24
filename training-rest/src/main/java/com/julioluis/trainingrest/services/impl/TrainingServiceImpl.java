@@ -28,20 +28,23 @@ public class TrainingServiceImpl implements TrainingService {
     }
 
     @Override
-    public void save(Training training) {
-        trainingRepository.save(training);
+    public Training save(Training training) {
+       Training trainingSaved= trainingRepository.save(training);
+       return trainingSaved;
     }
 
     @Override
-    public void update(Training training) {
-        trainingRepository.save(training);
+    public Training update(Training training) {
+      Training trainingUpdated=  trainingRepository.save(training);
+      return trainingUpdated;
     }
 
     @Override
-    public void delete(Integer id) {
+    public Training delete(Integer id) {
         Training training=this.findById(id);
         training.setStatus(new Status(StatusEnum.INACTIVE.getStatus()));
 
-        trainingRepository.save(training);
+       Training trainingDeleted= trainingRepository.save(training);
+       return trainingDeleted;
     }
 }

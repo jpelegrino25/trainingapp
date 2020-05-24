@@ -2,12 +2,14 @@ package com.julioluis.trainingrest.services;
 
 
 
+import com.julioluis.trainingrest.dto.ResponseDTO;
 import com.julioluis.trainingrest.entities.Authority;
 import com.julioluis.trainingrest.entities.Rol;
 import com.julioluis.trainingrest.entities.Status;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.repositories.RolRepository;
 import com.julioluis.trainingrest.repositories.UserRepository;
+import com.julioluis.trainingrest.utils.BusinessException;
 import com.julioluis.trainingrest.utils.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -65,14 +67,23 @@ public class UserService implements UserDetailsService {
     }
 
 
-    public void saveUser(User user) {
-        if(Objects.isNull(user.getId())) {
-            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            String pass = encoder.encode(user.getPassword());
-            user.setPassword(pass);
-            user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
-        }
-        userRepository.save(user);
+    public User saveUser(User user) throws BusinessException {
+
+           if (Objects.isNull(user))
+               throw new BusinessException("Is require a valid user the object is null");
+           if(Objects.isNull(user.getPassword()))
+               throw new BusinessException("User require password to be created");
+
+           if(Objects.isNull(user.getId())) {
+               BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+               String pass = encoder.encode(user.getPassword());
+               user.setPassword(pass);
+               user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
+           }
+
+           User userSaved=  userRepository.save(user);
+
+        return userSaved;
     }
 
     public User findUserByUsername(String username) {
@@ -99,11 +110,13 @@ public class UserService implements UserDetailsService {
         return user.get();
     }
 
-    public void deleteUser(Integer id) {
+    public User deleteUser(Integer id) {
         User user=findById(id);
 
         user.setStatus(new Status(StatusEnum.INACTIVE.getStatus()));
-        userRepository.save(user);
+       User userDeleted= userRepository.save(user);
+
+       return userDeleted;
 
     }
 

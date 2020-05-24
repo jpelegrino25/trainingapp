@@ -8,8 +8,8 @@ public interface TrainingService {
 
     List<Training> findAll();
     Training findById(Integer id);
-    void save(Training training);
-    void update(Training training);
-    void delete(Integer id);
+    Training save(Training training);
+    Training update(Training training);
+    Training delete(Integer id);
 
 }
