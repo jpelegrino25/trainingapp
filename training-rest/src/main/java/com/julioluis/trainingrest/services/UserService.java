@@ -107,6 +107,9 @@ public class UserService implements UserDetailsService {
 
     public User findById(Integer id) {
        Optional<User> user=userRepository.findById(id);
+       if (!user.isPresent()) {
+           return null;
+       }
         return user.get();
     }
 

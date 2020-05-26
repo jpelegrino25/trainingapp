@@ -20,18 +20,16 @@ public class UserResourceIntegrationTest {
     @Test
     public void testSaveUser() {
         User user=new User();
-        user.setPassword("admin");
-        user.setUsername("admin");
+        user.setPassword("test");
+        user.setUsername("test");
         user.setFirstname("Administor");
         Rol rol=new Rol();
         rol.setId(1);
         user.setRol(rol);
 
-        ResponseEntity<User> response=userResource.create(user);
+        ResponseEntity<Void> response=userResource.create(user);
 
-        assertNotNull(response.getBody());
-        assertNotNull(response.getBody().getId());
-
+        assertEquals(201,response.getStatusCode().value());
 
     }
 }

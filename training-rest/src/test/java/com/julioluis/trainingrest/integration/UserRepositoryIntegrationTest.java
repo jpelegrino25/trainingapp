@@ -1,7 +1,10 @@
 package com.julioluis.trainingrest.integration;
 
+import com.julioluis.trainingrest.entities.Rol;
+import com.julioluis.trainingrest.entities.Status;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.repositories.UserRepository;
+import com.julioluis.trainingrest.utils.StatusEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +30,11 @@ public class UserRepositoryIntegrationTest {
         User user=new User();
         user.setPassword("122");
         user.setFirstname("Goku");
+        Rol rol=new Rol();
+        rol.setId(1);
+        user.setRol(rol);
+        user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
+
 
         entityManager.persist(user);
 

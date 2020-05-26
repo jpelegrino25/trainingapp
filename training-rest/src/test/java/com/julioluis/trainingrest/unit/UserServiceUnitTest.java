@@ -14,6 +14,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Optional;
+
 import static org.mockito.Mockito.*;
 //import static org.junit.Assert.*;
 
@@ -51,6 +54,23 @@ public class UserServiceUnitTest {
         assertThrows(BusinessException.class,()->{
            userService.saveUser(null);
         });
+    }
+
+
+    @Test
+    public void testFindUserSuccessful() {
+        Integer searchID=1;
+        User user=new User();
+        user.setId(searchID);
+
+        Optional<User> userOptional=Optional.of(user);
+
+        when(userRepository.findById(anyInt())).thenReturn(userOptional);
+
+        User userFound=userService.findById(searchID);
+
+        assertNotNull(userFound);
+        assertNotNull(userFound.getId());
     }
 
 

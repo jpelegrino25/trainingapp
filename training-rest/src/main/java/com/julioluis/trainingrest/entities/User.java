@@ -1,15 +1,17 @@
 package com.julioluis.trainingrest.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
-//@JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="id")
+@ApiModel(description = "User details")
+@JsonFilter("UserFilter")
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +22,10 @@ public class User {
     private String lastname;
     @Column(name = "email_address")
     private String emailAddress;
+    @Size(min = 5,message = "At least Username should have 5 characters")
+    @ApiModelProperty(notes = "At least Username should have 5 characters")
     private String username;
+    @JsonIgnore
     private String password;
 
     @ManyToOne
