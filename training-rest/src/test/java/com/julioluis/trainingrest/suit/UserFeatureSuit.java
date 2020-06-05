@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({UserRepositoryIntegrationTest.class,UserHelperIntegrationTest.class,
+@Suite.SuiteClasses({UserHelperIntegrationTest.class,
         UserServiceIntegrationTest.class, UserResourceIntegrationTest.class
         })
 public class UserFeatureSuit {

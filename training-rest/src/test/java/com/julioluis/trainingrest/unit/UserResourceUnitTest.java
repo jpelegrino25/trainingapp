@@ -27,8 +27,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -111,7 +110,16 @@ public class UserResourceUnitTest {
     }
 
 
+    @Test
+    @WithMockUser("/admin")
+    public void testDeleteSuccess() throws Exception {
+        User user=new User();
+        when(userService.findById(anyInt())).thenReturn(user);
 
+        mockMvc.perform(delete("/users/8"))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
 
 
 }

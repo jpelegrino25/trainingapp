@@ -107,7 +107,7 @@ public class UserResource {
             userService.deleteUser(id);
             return ResponseEntity.ok().build();
         } catch (BusinessException e) {
-            throw new UserException(e);
+            throw new UserException(e.getMessage());
         }
 
     }

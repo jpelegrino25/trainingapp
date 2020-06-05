@@ -16,7 +16,5 @@ public class UserException extends RuntimeException {
         this.message=message;
     }
 
-    public UserException(Throwable cause) {
-        super(cause);
-    }
+
 }

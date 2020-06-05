@@ -3,6 +3,7 @@ package com.julioluis.trainingrest.integration;
 import com.julioluis.trainingrest.entities.Rol;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.resources.UserResource;
+import com.julioluis.trainingrest.utils.UserException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,20 @@ public class UserResourceIntegrationTest {
         ResponseEntity<User> response=userResource.getOne(1);
         assertEquals(200,response.getStatusCode().value());
     }
+
+    @Test
+    public void testDeleteSuccess() {
+        ResponseEntity<Void> response=userResource.delete(8);
+        assertEquals(200,response.getStatusCode().value());
+    }
+
+    @Test
+    public void testDeleteFailure() {
+        assertThrows(UserException.class,()-> {
+            userResource.delete(-1);
+        });
+    }
+
 
 
 
