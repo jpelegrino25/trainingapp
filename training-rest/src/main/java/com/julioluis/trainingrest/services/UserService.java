@@ -96,8 +96,11 @@ public class UserService implements UserDetailsService {
         return user.get();
     }
 
-    public User deleteUser(Integer id) {
+    public User deleteUser(Integer id) throws BusinessException {
         User user=findById(id);
+
+        if(Objects.isNull(user))
+            throw new BusinessException("Unable to delete user with the id "+ id);
 
         user.setStatus(new Status(StatusEnum.INACTIVE.getStatus()));
        User userDeleted= userRepository.save(user);

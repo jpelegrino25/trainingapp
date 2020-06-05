@@ -129,5 +129,18 @@ public class UserServiceUnitTest {
 
     }
 
+    @Test
+    public void testFindTrainers() throws CloneNotSupportedException {
+        User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
+        user.getRol().setId(2);
+
+        List<User>userList=Arrays.asList(user);
+        when(userRepository.getAllInstructors()).thenReturn(userList);
+
+        List<User> trainers=userService.findTrainers();
+        assertNotNull(trainers);
+
+    }
+
 
 }

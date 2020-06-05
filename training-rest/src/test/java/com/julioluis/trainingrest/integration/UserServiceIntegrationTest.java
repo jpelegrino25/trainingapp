@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -95,8 +95,40 @@ public class UserServiceIntegrationTest {
         String USER="admin";
         UserDetails userDetails=userService.loadUserByUsername(USER);
         assertNotNull(userDetails);
+    }
+
+    @Test
+    public void findTrainers() {
+        List<User> trainers=userService.findTrainers();
+        assertNotNull(trainers);
 
     }
+
+    @Test
+    public void deleteUser() throws BusinessException {
+        int userId=8;
+        User userDeleted=userService.deleteUser(userId);
+        int status=userDeleted.getStatus().getId();
+
+        assertEquals(2,status);
+    }
+
+    @Test
+    public void deleteUser_Return_BusinessException()  {
+        assertThrows(BusinessException.class,()-> {
+            int userId=13;
+            userService.deleteUser(userId);
+        });
+
+
+    }
+
+    @Test
+    public void findAllRoles() {
+        List<Rol> roles=userService.findAllRoles();
+        assertNotNull(roles);
+    }
+
 
     
 

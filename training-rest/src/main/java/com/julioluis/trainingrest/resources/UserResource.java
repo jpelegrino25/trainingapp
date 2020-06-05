@@ -103,8 +103,13 @@ public class UserResource {
 
     @DeleteMapping(path = "{userId}")
     public ResponseEntity<Void> delete(@PathVariable(name = "userId") Integer id) {
-        userService.deleteUser(id);
-        return ResponseEntity.ok().build();
+        try {
+            userService.deleteUser(id);
+            return ResponseEntity.ok().build();
+        } catch (BusinessException e) {
+            throw new UserException(e);
+        }
+
     }
 
     @GetMapping(path = "roles")

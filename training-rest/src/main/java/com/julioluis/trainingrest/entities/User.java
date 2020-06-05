@@ -24,12 +24,12 @@ public class User implements TrainingProptotype {
     private String lastname;
     @Column(name = "email_address")
     private String emailAddress;
-//    @NotNull(message = "Username should not be null")
+    @NotNull(message = "Username should not be null")
     @Size(min = 5,message = "At least Username should have 5 characters")
     @ApiModelProperty(notes = "At least Username should have 5 characters")
     private String username;
     @JsonIgnore
-//    @NotNull(message = "Password should not be null")
+    @NotNull(message = "Password should not be null")
     private String password;
 
     @ManyToOne
