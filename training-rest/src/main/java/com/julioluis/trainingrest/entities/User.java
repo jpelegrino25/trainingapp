@@ -1,18 +1,20 @@
 package com.julioluis.trainingrest.entities;
 
 import com.fasterxml.jackson.annotation.*;
+import com.julioluis.trainingrest.utils.prototypes.TrainingProptotype;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "user")
 @ApiModel(description = "User details")
-@JsonFilter("UserFilter")
-public class User {
+//@JsonFilter("UserFilter")
+public class User implements TrainingProptotype {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,10 +24,12 @@ public class User {
     private String lastname;
     @Column(name = "email_address")
     private String emailAddress;
+//    @NotNull(message = "Username should not be null")
     @Size(min = 5,message = "At least Username should have 5 characters")
     @ApiModelProperty(notes = "At least Username should have 5 characters")
     private String username;
     @JsonIgnore
+//    @NotNull(message = "Password should not be null")
     private String password;
 
     @ManyToOne
@@ -35,6 +39,7 @@ public class User {
 
     @JoinColumn(name = "roles_id")
     @ManyToOne
+    @NotNull(message = "Rol should not be null")
     private Rol rol;
 
     public Integer getId() {
@@ -99,5 +104,10 @@ public class User {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public TrainingProptotype clone() throws CloneNotSupportedException {
+        return (User) super.clone();
     }
 }

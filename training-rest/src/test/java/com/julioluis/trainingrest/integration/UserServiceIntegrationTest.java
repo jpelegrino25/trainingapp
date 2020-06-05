@@ -7,12 +7,17 @@ import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.services.UserService;
 import com.julioluis.trainingrest.utils.BusinessException;
 import com.julioluis.trainingrest.utils.StatusEnum;
+import com.julioluis.trainingrest.utils.prototypes.ModelType;
+import com.julioluis.trainingrest.utils.prototypes.PrototypeFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -24,9 +29,9 @@ public class UserServiceIntegrationTest {
     private UserService userService;
 
     @Test
-    public void testSaveUserSuccessful() throws BusinessException {
+    public void testSaveUserSuccessful() throws BusinessException, CloneNotSupportedException {
 
-        User user = new User();
+        User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
         user.setFirstname("Jennifer");
         user.setPassword("1234");
         Rol rol=new Rol();
@@ -57,6 +62,43 @@ public class UserServiceIntegrationTest {
 
         assertNull(userFound);
     }
+
+
+    @Test
+    public void testFindUserByUsernameSuccessful() {
+        String username="admin";
+        User userFound=userService.findUserByUsername(username);
+
+        assertNotNull(userFound);
+        assertNotNull(userFound.getId());
+
+    }
+
+
+    @Test
+    public void testFindUserByUsernameFailure() {
+        String username="bamban";
+        User userFound=userService.findUserByUsername(username);
+
+        assertNull(userFound);
+    }
+
+    @Test
+    public void testFindAllUser() {
+        List<User> userList=userService.findAllUser();
+        assertNotNull(userList);
+
+    }
+
+    @Test
+    public void testLoadUserByUsername() {
+        String USER="admin";
+        UserDetails userDetails=userService.loadUserByUsername(USER);
+        assertNotNull(userDetails);
+
+    }
+
+    
 
 
 }

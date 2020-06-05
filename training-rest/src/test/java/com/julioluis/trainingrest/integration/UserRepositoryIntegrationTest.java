@@ -5,7 +5,9 @@ import com.julioluis.trainingrest.entities.Status;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.repositories.UserRepository;
 import com.julioluis.trainingrest.utils.StatusEnum;
-import org.junit.jupiter.api.Test;
+import com.julioluis.trainingrest.utils.prototypes.ModelType;
+import com.julioluis.trainingrest.utils.prototypes.PrototypeFactory;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -26,16 +28,8 @@ public class UserRepositoryIntegrationTest {
     private UserRepository userRepository;
 
     @Test
-    public void testSaveUser() {
-        User user=new User();
-        user.setPassword("122");
-        user.setFirstname("Goku");
-        Rol rol=new Rol();
-        rol.setId(1);
-        user.setRol(rol);
-        user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
-
-
+    public void testSaveUser() throws CloneNotSupportedException {
+       User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
         entityManager.persist(user);
 
         assertNotNull(user.getId());

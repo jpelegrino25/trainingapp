@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import javax.servlet.http.HttpServletResponse;
+
 
 @Configuration
 @EnableWebSecurity
@@ -31,6 +33,14 @@ public class SpringScurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+            http.exceptionHandling()
+                    .accessDeniedHandler((request,response,accessDeniedException)->{
+                        response.sendError(HttpServletResponse.SC_FORBIDDEN);
+                    })
+                    .authenticationEntryPoint((request, response, authException) -> {
+                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                    });;
 
                  http
                          .csrf().disable()

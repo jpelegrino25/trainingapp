@@ -28,20 +28,29 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
+//    @GetMapping
+//    public ResponseEntity<MappingJacksonValue> getAll() {
+//        List<User> userList=userService.findAllUser();
+//
+//        MappingJacksonValue mapping=new MappingJacksonValue(userList);
+//        SimpleBeanPropertyFilter filter=SimpleBeanPropertyFilter.filterOutAllExcept("firstname","lastname","emailAddress","rol");
+//        FilterProvider filterProvider=new SimpleFilterProvider().addFilter("UserFilter",filter);
+//
+//        mapping.setFilters(filterProvider);
+//
+//
+//        return ResponseEntity.ok()
+//                .body(mapping);
+//    }
+
     @GetMapping
-    public ResponseEntity<MappingJacksonValue> getAll() {
+    public ResponseEntity<List<User>> getAll() {
         List<User> userList=userService.findAllUser();
 
-        MappingJacksonValue mapping=new MappingJacksonValue(userList);
-        SimpleBeanPropertyFilter filter=SimpleBeanPropertyFilter.filterOutAllExcept("firstname","lastname","emailAddress","rol");
-        FilterProvider filterProvider=new SimpleFilterProvider().addFilter("UserFilter",filter);
-
-        mapping.setFilters(filterProvider);
-
-
         return ResponseEntity.ok()
-                .body(mapping);
+                .body(userList);
     }
+
 
     @GetMapping(path = "trainers")
     public ResponseEntity<List<User>> getInstructors() {

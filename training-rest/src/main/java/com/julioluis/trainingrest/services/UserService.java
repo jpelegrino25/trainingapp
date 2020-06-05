@@ -11,6 +11,7 @@ import com.julioluis.trainingrest.repositories.RolRepository;
 import com.julioluis.trainingrest.repositories.UserRepository;
 import com.julioluis.trainingrest.utils.BusinessException;
 import com.julioluis.trainingrest.utils.StatusEnum;
+import com.julioluis.trainingrest.utils.UserHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,6 +32,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private RolRepository rolRepository;
 
+    @Autowired
+    private UserHelper userHelper;
 
 
 
@@ -41,36 +44,17 @@ public class UserService implements UserDetailsService {
         if(!user.isPresent())
             throw new UsernameNotFoundException(s);
 
-        User myUser=user.get();
-        BCryptPasswordEncoder encoder=new BCryptPasswordEncoder();
-        boolean match=encoder.matches("password",myUser.getPassword());
-        System.out.println(myUser.getPassword());
-        return toUserDetail(user.get());
-    }
-
-    private UserDetails toUserDetail(User user) {
-        return org.springframework.security.core.userdetails.User.withUsername(user.getUsername())
-                .password(user.getPassword())
-                .roles(user.getRol().getDescription())
-                .authorities(this.authorities(user.getRol().getAuthorities()))
-                .build();
-    }
-
-    private String[] authorities(List<Authority> privilageList) {
-
-        String [] authorityList=new String[privilageList.size()];
-
-        for (int i=0;i<privilageList.size();i++) {
-            authorityList[i]=privilageList.get(i).getDescription();
+        try {
+            UserDetails userDetails  = userHelper.toUserDetail(user.get());
+            return userDetails;
+        } catch (BusinessException e) {
+            return null;
         }
-        return authorityList;
-    }
 
+    }
 
     public User saveUser(User user) throws BusinessException {
 
-           if (Objects.isNull(user))
-               throw new BusinessException("Is require a valid user the object is null");
            if(Objects.isNull(user.getPassword()))
                throw new BusinessException("User require password to be created");
 
@@ -87,13 +71,12 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserByUsername(String username) {
-        try {
-            Optional<User> user = userRepository.findByUsername(username);
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent()) {
             return user.get();
-
-        }catch (Exception ex) {
-            return null;
         }
+
+        return null;
 
     }
 

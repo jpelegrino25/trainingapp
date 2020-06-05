@@ -22,10 +22,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
@@ -72,8 +75,39 @@ public class UserResourceUnitTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
+    }
 
+    @Test
+    @WithMockUser("/admin")
+    public void testGetAll() throws Exception {
+        List<User> userList= Arrays.asList(new User());
+        when(userService.findAllUser()).thenReturn(userList);
 
+        mockMvc.perform(get("/users"))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
+
+    @Test
+    @WithMockUser("/admin")
+    public void testGetOneSuccessful() throws Exception {
+        User user=new User();
+        when(userService.findById(anyInt())).thenReturn(user);
+
+        mockMvc.perform(get("/users/1"))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
+
+    @Test
+    @WithMockUser("/admin")
+    public void testGetOneFailure() throws Exception {
+
+        when(userService.findById(anyInt())).thenReturn(null);
+
+        mockMvc.perform(get("/users/123"))
+                .andExpect(status().isNotFound())
+                .andReturn();
     }
 
 
