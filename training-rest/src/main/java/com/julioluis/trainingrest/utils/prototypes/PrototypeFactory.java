@@ -1,9 +1,6 @@
 package com.julioluis.trainingrest.utils.prototypes;
 
-import com.julioluis.trainingrest.entities.Authority;
-import com.julioluis.trainingrest.entities.Rol;
-import com.julioluis.trainingrest.entities.Status;
-import com.julioluis.trainingrest.entities.User;
+import com.julioluis.trainingrest.entities.*;
 import com.julioluis.trainingrest.utils.StatusEnum;
 
 import java.util.Arrays;
@@ -28,7 +25,14 @@ public class PrototypeFactory {
         user.setRol(rol);
         user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
 
+//        Training Template
+        Training training=new Training();
+        training.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
+        training.setDescription("Training Test");
+
+
         proptotypeMap.put(ModelType.USER,user);
+        proptotypeMap.put(ModelType.TRAINING,training);
     }
 
     public static TrainingProptotype trainingProptotype(ModelType type) throws CloneNotSupportedException {

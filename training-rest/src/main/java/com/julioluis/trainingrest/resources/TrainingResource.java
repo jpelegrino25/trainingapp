@@ -2,11 +2,15 @@ package com.julioluis.trainingrest.resources;
 
 import com.julioluis.trainingrest.entities.Training;
 import com.julioluis.trainingrest.services.TrainingService;
+import com.julioluis.trainingrest.utils.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("trainings")
@@ -25,14 +29,21 @@ public class TrainingResource {
     @GetMapping(path = "{trainingId}")
     public ResponseEntity<Training> getOne(@PathVariable(name = "trainingId") Integer id) {
         Training training=trainingService.findById(id);
+        if (Objects.isNull(training))
+            throw new UserException("Training not found");
+
         return ResponseEntity.ok()
                 .body(training);
     }
 
     @PostMapping
     public ResponseEntity<Void> saveTraining(@RequestBody Training training) {
-            trainingService.save(training);
-        return ResponseEntity.ok()
+        Training trainingSaved = trainingService.save(training);
+
+        URI uri= ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}").buildAndExpand(trainingSaved.getId()).toUri();
+
+        return ResponseEntity.created(uri)
                 .build();
     }
 

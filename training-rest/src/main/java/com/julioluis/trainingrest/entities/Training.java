@@ -1,9 +1,11 @@
 package com.julioluis.trainingrest.entities;
 
+import com.julioluis.trainingrest.utils.prototypes.TrainingProptotype;
+
 import javax.persistence.*;
 
 @Entity
-public class Training {
+public class Training implements TrainingProptotype {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -34,5 +36,10 @@ public class Training {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public TrainingProptotype clone() throws CloneNotSupportedException {
+        return (Training) super.clone();
     }
 }

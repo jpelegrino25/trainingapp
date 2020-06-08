@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TrainingServiceImpl implements TrainingService {
@@ -24,7 +25,11 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public Training findById(Integer id) {
-        return trainingRepository.findById(id).get();
+        Optional<Training> trainingOptional = trainingRepository.findById(id);
+        if(trainingOptional.isPresent())
+        return trainingOptional.get();
+
+        return null;
     }
 
     @Override
