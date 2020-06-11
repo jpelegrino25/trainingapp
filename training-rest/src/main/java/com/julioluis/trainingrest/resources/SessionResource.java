@@ -3,11 +3,16 @@ package com.julioluis.trainingrest.resources;
 import com.julioluis.trainingrest.entities.Session;
 import com.julioluis.trainingrest.entities.SessionRegister;
 import com.julioluis.trainingrest.services.SessionService;
+import com.julioluis.trainingrest.utils.BusinessException;
+import com.julioluis.trainingrest.utils.UserException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("sessions")
@@ -27,18 +32,31 @@ public class SessionResource {
 
     @GetMapping(path = "{sessionId}")
     public ResponseEntity<Session> getOne(@PathVariable(name = "sessionId") Integer id) {
-        Session session=sessionService.findById(id);
-        return ResponseEntity.ok()
-                .body(session);
+
+        try {
+            Session session = sessionService.findById(id);
+            return ResponseEntity.ok()
+                    .body(session);
+        } catch (BusinessException e) {
+            throw new UserException(e.getMessage());
+        }
+
+
     }
 
     @GetMapping(path = "availables/{userId}")
     public ResponseEntity<List<Session>>
         findAllAvailableSessions(@PathVariable(name = "userId") Integer userId) {
-        List<Session> sessionList=sessionService.findAvailableSessions(userId);
 
-        return ResponseEntity.ok()
-                .body(sessionList);
+        try {
+            List<Session> sessionList = sessionService.findAvailableSessions(userId);
+            return ResponseEntity.ok()
+                    .body(sessionList);
+
+        } catch (BusinessException e) {
+            throw new UserException(e.getMessage());
+        }
+
     }
 
     @GetMapping(path = "instructor/{userId}")
@@ -50,14 +68,20 @@ public class SessionResource {
                 .body(sessionList);
     }
 
-
-
-
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody Session session) {
-        sessionService.saveSession(session);
-        return ResponseEntity.ok()
-                .build();
+        try {
+            Session saveSession = sessionService.saveSession(session);
+
+            URI uri= ServletUriComponentsBuilder.fromCurrentRequestUri()
+                    .path("/{id}").buildAndExpand(saveSession.getId()).toUri();
+
+            return ResponseEntity.created(uri)
+                    .build();
+        } catch (BusinessException e) {
+            throw new UserException(e.getMessage());
+        }
+
     }
 
     @PutMapping
@@ -69,9 +93,14 @@ public class SessionResource {
 
     @DeleteMapping(path = "{sessionId}")
     public ResponseEntity<Void> delete(@PathVariable(name = "sessionId") Integer id) {
-        sessionService.deleteSession(id);
-        return ResponseEntity.ok()
-                .build();
+        try {
+            sessionService.deleteSession(id);
+            return ResponseEntity.ok()
+                    .build();
+        } catch (BusinessException e) {
+            throw new UserException(e.getMessage());
+        }
+
     }
 
 

@@ -4,6 +4,7 @@ import com.julioluis.trainingrest.entities.*;
 import com.julioluis.trainingrest.utils.StatusEnum;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,8 +32,16 @@ public class PrototypeFactory {
         training.setDescription("Training Test");
 
 
+        Session session=new Session();
+        session.setStartDate(new Date());
+        session.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
+
+
+
+
         proptotypeMap.put(ModelType.USER,user);
         proptotypeMap.put(ModelType.TRAINING,training);
+        proptotypeMap.put(ModelType.SESSION,session);
     }
 
     public static TrainingProptotype trainingProptotype(ModelType type) throws CloneNotSupportedException {

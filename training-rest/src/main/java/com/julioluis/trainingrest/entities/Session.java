@@ -1,12 +1,14 @@
 package com.julioluis.trainingrest.entities;
 
+import com.julioluis.trainingrest.utils.prototypes.TrainingProptotype;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "session")
-public class Session {
+public class Session implements TrainingProptotype {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "session_id")
@@ -97,4 +99,8 @@ public class Session {
     }
 
 
+    @Override
+    public TrainingProptotype clone() throws CloneNotSupportedException {
+        return (Session) super.clone();
+    }
 }
