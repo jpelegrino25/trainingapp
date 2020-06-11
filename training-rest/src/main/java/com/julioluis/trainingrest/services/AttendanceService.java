@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AttendanceService {
 
-    void save(List<Attendance> attendances);
+    List<Attendance> save(List<Attendance> attendances);
 }
