@@ -1,14 +1,14 @@
 package com.julioluis.trainingrest.suit;
 
 
-import com.julioluis.trainingrest.integration.TrainingResourceIntegration;
-import com.julioluis.trainingrest.integration.TrainingServiceIntegration;
+import com.julioluis.trainingrest.integration.TrainingResourceIntegrationTest;
+import com.julioluis.trainingrest.integration.TrainingServiceIntegrationTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({TrainingServiceIntegration.class,
-        TrainingResourceIntegration.class
+@Suite.SuiteClasses({TrainingServiceIntegrationTest.class,
+        TrainingResourceIntegrationTest.class
 })
 public class TrainingFeatureSuit {
 }

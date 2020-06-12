@@ -12,7 +12,7 @@ import java.util.Arrays;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserPagingRespositoryIntegration {
+public class UserPagingRespositoryIntegrationTest {
 
 
 }

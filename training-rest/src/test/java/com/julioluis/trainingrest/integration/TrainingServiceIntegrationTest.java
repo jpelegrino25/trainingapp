@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TrainingServiceIntegration {
+public class TrainingServiceIntegrationTest {
 
     @Autowired
     private TrainingService trainingService;
