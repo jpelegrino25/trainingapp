@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserServiceIntegrationTest {
+public class UserServiceIntegrationTests {
 
     @Autowired
     private UserService userService;

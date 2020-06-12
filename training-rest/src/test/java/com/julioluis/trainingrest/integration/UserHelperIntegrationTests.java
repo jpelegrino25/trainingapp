@@ -22,7 +22,7 @@ import java.util.Objects;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class UserHelperIntegrationTest {
+public class UserHelperIntegrationTests {
 
     @Autowired
     private UserHelper userHelper;

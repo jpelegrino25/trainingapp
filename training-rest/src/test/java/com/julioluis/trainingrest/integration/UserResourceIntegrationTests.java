@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserResourceIntegrationTest {
+public class UserResourceIntegrationTests {
     @Autowired
     private UserResource userResource;
 

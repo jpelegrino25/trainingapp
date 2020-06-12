@@ -16,7 +16,7 @@ import java.util.List;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TrainingResourceIntegrationTest {
+public class TrainingResourceIntegrationTests {
 
     @Autowired
     private TrainingResource trainingResource;

@@ -1,15 +1,15 @@
 package com.julioluis.trainingrest.suit;
 
 
-import com.julioluis.trainingrest.integration.SessionRegisterResourceIntegrationTest;
-import com.julioluis.trainingrest.integration.SessionRegisterServiceIntegrationTest;
+import com.julioluis.trainingrest.integration.SessionRegisterResourceIntegrationTests;
+import com.julioluis.trainingrest.integration.SessionRegisterServiceIntegrationTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        SessionRegisterServiceIntegrationTest.class,
-        SessionRegisterResourceIntegrationTest.class
+        SessionRegisterServiceIntegrationTests.class,
+        SessionRegisterResourceIntegrationTests.class
 })
 public class SessionRegisterFeatureSuit {
 }

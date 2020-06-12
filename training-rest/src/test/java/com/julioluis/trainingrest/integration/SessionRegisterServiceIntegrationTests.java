@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class SessionRegisterServiceIntegrationTest {
+public class SessionRegisterServiceIntegrationTests {
 
     @Autowired
     private SessionRegisterService sessionRegisterService;

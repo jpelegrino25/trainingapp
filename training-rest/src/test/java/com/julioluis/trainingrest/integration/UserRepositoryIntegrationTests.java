@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 @DataJpaTest
 @RunWith(SpringRunner.class)
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class UserRepositoryIntegrationTest {
+public class UserRepositoryIntegrationTests {
 
     @Autowired
     private TestEntityManager entityManager;

@@ -20,7 +20,7 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class SessionRegisterResourceIntegrationTest {
+public class SessionRegisterResourceIntegrationTests {
 
     @Autowired
     private SessionRegisterResource sessionRegisterResource;

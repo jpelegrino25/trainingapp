@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class SessionHelperIntegrationTest {
+public class SessionHelperIntegrationTests {
 
     @Autowired
     private SessionHelper sessionHelper;

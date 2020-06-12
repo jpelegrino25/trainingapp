@@ -3,56 +3,44 @@ package com.julioluis.trainingrest.integration;
 import com.julioluis.trainingrest.entities.Session;
 import com.julioluis.trainingrest.entities.Training;
 import com.julioluis.trainingrest.entities.User;
-import com.julioluis.trainingrest.resources.SessionResource;
-import com.julioluis.trainingrest.utils.UserException;
+import com.julioluis.trainingrest.services.SessionService;
+import com.julioluis.trainingrest.utils.BusinessException;
 import com.julioluis.trainingrest.utils.prototypes.ModelType;
 import com.julioluis.trainingrest.utils.prototypes.PrototypeFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Date;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
-import java.util.List;
-
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class SessionResourceIntegrationTest {
+public class SessionServiceIntegrationTests {
 
     @Autowired
-    private SessionResource sessionResource;
+    private SessionService sessionService;
 
     @Test
     public void testFindAll() {
-        ResponseEntity<List<Session>> response=sessionResource.findAll();
-        assertEquals(200,response.getStatusCode().value());
-
+        List<Session> sessionList=sessionService.findAll();
+        assertNotNull(sessionList);
     }
 
     @Test
-    public void testFinOne() {
-        ResponseEntity<Session> response=sessionResource.getOne(6);
-        assertEquals(200,response.getStatusCode().value());
-
+    public void testFindById() throws BusinessException {
+        Session session=sessionService.findById(6);
+        assertNotNull(session);
     }
 
-    @Test
-    public void testFindAllAvailableSessions() {
-        ResponseEntity<List<Session>> response=sessionResource.findAllAvailableSessions(8);
-        assertEquals(200,response.getStatusCode().value());
-    }
+
 
     @Test
-    public void findInstructorSessions() {
-        ResponseEntity<List<Session>> response=sessionResource.findInstructorSessions(6);
-        assertEquals(200,response.getStatusCode().value());
-    }
-
-    @Test
-    public void testSave() throws CloneNotSupportedException {
+    public void testSaveSession() throws CloneNotSupportedException, BusinessException {
         Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
         User user=(User)  PrototypeFactory.trainingProptotype(ModelType.USER);
         user.setId(80);
@@ -61,12 +49,12 @@ public class SessionResourceIntegrationTest {
         session.setUser(user);
         session.setTraining(training);
 
-        ResponseEntity<Void> response=sessionResource.save(session);
-        assertEquals(201,response.getStatusCode().value());
+        Session session1=sessionService.saveSession(session);
+        assertNotNull(session1);
     }
 
     @Test
-    public void testUpdate() throws CloneNotSupportedException {
+    public void testUpdateSession() throws CloneNotSupportedException {
         Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
         session.setId(17);
         User user=(User)  PrototypeFactory.trainingProptotype(ModelType.USER);
@@ -78,16 +66,25 @@ public class SessionResourceIntegrationTest {
         String location = "Instituto Tecnologico de las Americas";
         session.setLocation(location);
 
-        ResponseEntity<Void> response=sessionResource.update(session);
-        assertEquals(200,response.getStatusCode().value());
+        Session session1=sessionService.updateSession(session);
+        assertEquals(location,session1.getLocation());
+
+    }
+
+
+
+    @Test
+    public void testFindAvailableSessions() throws BusinessException {
+        List<Session> sessionList=sessionService.findAvailableSessions(8);
+        assertNotNull(sessionList);
+        assertEquals(false,sessionList.isEmpty());
     }
 
     @Test
-    public void testDelete() {
-
-        ResponseEntity<Void> response=sessionResource.delete(18);
-        assertEquals(200,response.getStatusCode().value());
+    public void testFindSessionsByInstructor() {
+        List<Session> sessionList=sessionService.findSessionsByInstructor(6);
+        assertNotNull(sessionList);
+        assertEquals(false,sessionList.isEmpty());
     }
-
 
 }

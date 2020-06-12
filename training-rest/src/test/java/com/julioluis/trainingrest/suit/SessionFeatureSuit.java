@@ -1,17 +1,17 @@
 package com.julioluis.trainingrest.suit;
 
 
-import com.julioluis.trainingrest.integration.SessionHelperIntegrationTest;
-import com.julioluis.trainingrest.integration.SessionResourceIntegrationTest;
-import com.julioluis.trainingrest.integration.SessionServiceIntegrationTest;
+import com.julioluis.trainingrest.integration.SessionHelperIntegrationTests;
+import com.julioluis.trainingrest.integration.SessionResourceIntegrationTests;
+import com.julioluis.trainingrest.integration.SessionServiceIntegrationTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        SessionHelperIntegrationTest.class,
-        SessionServiceIntegrationTest.class,
-        SessionResourceIntegrationTest.class
+        SessionHelperIntegrationTests.class,
+        SessionServiceIntegrationTests.class,
+        SessionResourceIntegrationTests.class
 })
 public class SessionFeatureSuit {
 }

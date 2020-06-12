@@ -1,15 +1,15 @@
 package com.julioluis.trainingrest.suit;
 
 
-import com.julioluis.trainingrest.integration.AttendanceResourceIntegrationTest;
-import com.julioluis.trainingrest.integration.AttendanceServiceInterationTest;
+import com.julioluis.trainingrest.integration.AttendanceResourceIntegrationTests;
+import com.julioluis.trainingrest.integration.AttendanceServiceInterationTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        AttendanceServiceInterationTest.class,
-        AttendanceResourceIntegrationTest.class
+        AttendanceServiceInterationTests.class,
+        AttendanceResourceIntegrationTests.class
 })
 public class AttendanceFeatureSuit {
 }

@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class TrainingServiceIntegrationTest {
+public class TrainingServiceIntegrationTests {
 
     @Autowired
     private TrainingService trainingService;

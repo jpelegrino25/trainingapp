@@ -1,13 +1,15 @@
 package com.julioluis.trainingrest.integration;
 
+import com.julioluis.trainingrest.AttendanceDTO;
 import com.julioluis.trainingrest.entities.Attendance;
 import com.julioluis.trainingrest.entities.User;
-import com.julioluis.trainingrest.services.AttendanceService;
+import com.julioluis.trainingrest.resources.AttendanceResource;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
@@ -17,10 +19,10 @@ import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
-public class AttendanceServiceInterationTest {
+public class AttendanceResourceIntegrationTests {
 
     @Autowired
-    private AttendanceService attendanceService;
+    private AttendanceResource attendanceResource;
 
     @Test
     @Ignore
@@ -30,16 +32,12 @@ public class AttendanceServiceInterationTest {
         user.setId(10);
         attendance.setStudent(user);
         List<Attendance> attendances= Arrays.asList(attendance);
-        List<Attendance> attendances1=attendanceService.save(attendances);
+        AttendanceDTO attendanceDTO=new AttendanceDTO();
+        attendanceDTO.setAttendances(attendances);
 
-        assertNotNull(attendances1);
+        ResponseEntity<Void> response=attendanceResource.save(attendanceDTO);
+        assertEquals(200,response.getStatusCode().value());
     }
 
-    @Test
-    public void testSave_returnNull() {
-        List<Attendance> attendances= Arrays.asList(new Attendance());
-        List<Attendance> attendances1=attendanceService.save(attendances);
 
-        assertNull(attendances1);
-    }
 }
