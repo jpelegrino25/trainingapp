@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -113,15 +113,6 @@ public class UserServiceIntegrationTest {
         assertEquals(2,status);
     }
 
-    @Test
-    public void deleteUser_Return_BusinessException()  {
-        assertThrows(BusinessException.class,()-> {
-            int userId=13;
-            userService.deleteUser(userId);
-        });
-
-
-    }
 
     @Test
     public void findAllRoles() {

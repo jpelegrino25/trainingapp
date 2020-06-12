@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest;
+package com.julioluis.trainingrest.unit;
 
 import com.julioluis.trainingrest.entities.Session;
 import com.julioluis.trainingrest.entities.Training;
@@ -20,7 +20,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest

@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -36,14 +36,7 @@ public class TrainingResourceIntegrationTest {
 
     }
 
-    @Test
-    public void testFindById_UserException() {
-        assertThrows(UserException.class,()-> {
-            int id=-1;
-            trainingResource.getOne(id);
-        });
 
-    }
 
     @Test
     public void testSaveTraining() {

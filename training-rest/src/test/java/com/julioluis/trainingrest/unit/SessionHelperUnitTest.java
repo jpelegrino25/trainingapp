@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest;
+package com.julioluis.trainingrest.unit;
 
 import com.julioluis.trainingrest.entities.RegisterSessionId;
 import com.julioluis.trainingrest.entities.Session;
@@ -20,7 +20,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(MockitoJUnitRunner.class)

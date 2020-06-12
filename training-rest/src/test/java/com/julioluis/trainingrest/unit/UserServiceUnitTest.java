@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest;
+package com.julioluis.trainingrest.unit;
 
 import com.julioluis.trainingrest.dto.ResponseDTO;
 import com.julioluis.trainingrest.entities.Status;
@@ -12,7 +12,6 @@ import com.julioluis.trainingrest.utils.prototypes.ModelType;
 import com.julioluis.trainingrest.utils.prototypes.PrototypeFactory;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -27,7 +26,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
-//import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
@@ -63,15 +62,6 @@ public class UserServiceUnitTest {
     }
 
     @Test
-    public void testSaveUserThrowsBusinessException() {
-        assertThrows(BusinessException.class,()->{
-            User user=new User();
-           userService.saveUser(user);
-        });
-    }
-
-
-    @Test
     public void testFindUserSuccessful() {
         Integer searchID=1;
         User user=new User();
@@ -101,21 +91,6 @@ public class UserServiceUnitTest {
         assertNotNull(userFound.getId());
     }
 
-    @Test
-    public void testFindAllUser() {
-        User user = new User();
-        user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
-        List<User> userList= Arrays.asList(user);
-        when(userRepository.getAllActiveUsers()).thenReturn(userList);
-
-        List<User> users=userService.findAllUser();
-
-        assertNotNull(users);
-        assertEquals(false,users.isEmpty());
-        assertEquals(1,users.stream().findFirst().get().getStatus().getId());
-
-
-    }
 
     @Test
     public void testFindAllUser_NotFound() {

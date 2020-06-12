@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,17 +43,6 @@ public class UserHelperIntegrationTest {
 
 
     @Test
-    public void testAuthorities_throws_businessException_on_emptyAuthorities() {
-        assertThrows(BusinessException.class,()-> {
-            List<Authority> authorities= Arrays.asList();
-            String [] authoritiesStr=userHelper.authorities(authorities);
-        });
-
-    }
-
-
-
-    @Test
     public void testToUserDetail() throws BusinessException, CloneNotSupportedException {
 
         User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
@@ -70,59 +59,6 @@ public class UserHelperIntegrationTest {
         assertNotNull(userDetails);
         assertEquals(true,userDetails.isEnabled());
     }
-
-    @Test
-    public void testToUserDetail_throws_BusinessException_onNullUsername() {
-
-        assertThrows(BusinessException.class,()-> {
-            User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
-            user.setUsername(null);
-
-            UserDetails userDetails=userHelper.toUserDetail(user);
-
-        });
-    }
-
-
-    @Test
-    public void testToUserDetail_throws_BusinessException_onNullPassword() {
-
-        assertThrows(BusinessException.class,()-> {
-            User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
-            user.setPassword(null);
-
-            UserDetails userDetails=userHelper.toUserDetail(user);
-
-        });
-    }
-
-
-    @Test
-    public void testToUserDetail_throws_BusinessException_onNullRol() {
-
-        assertThrows(BusinessException.class,()-> {
-            User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
-            user.setRol(null);
-
-            UserDetails userDetails=userHelper.toUserDetail(user);
-
-        });
-    }
-
-
-    @Test
-    public void testToUserDetail_throws_BusinessException_onNullAuthorities_on_rol() {
-
-        assertThrows(BusinessException.class,()-> {
-            User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
-            user.getRol().setAuthorities(null);
-
-            UserDetails userDetails=userHelper.toUserDetail(user);
-
-        });
-    }
-
-
 
 
 }

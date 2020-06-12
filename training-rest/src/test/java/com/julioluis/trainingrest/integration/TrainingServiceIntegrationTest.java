@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -63,12 +63,5 @@ public class TrainingServiceIntegrationTest {
         assertEquals("Training 1",trainingSaved.getDescription());
     }
 
-    @Test
-    public void testDelete()  {
-        int id=7;
-        Training trainingDeleted=trainingService.delete(id);
 
-        assertNotNull( trainingDeleted);
-        assertEquals(2,trainingDeleted.getStatus().getId());
-    }
 }

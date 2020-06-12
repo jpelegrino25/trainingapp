@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest;
+package com.julioluis.trainingrest.unit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.julioluis.trainingrest.entities.Session;

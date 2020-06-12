@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest;
+package com.julioluis.trainingrest.unit;
 
 import com.julioluis.trainingrest.entities.Training;
 import com.julioluis.trainingrest.repositories.TrainingRepository;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest

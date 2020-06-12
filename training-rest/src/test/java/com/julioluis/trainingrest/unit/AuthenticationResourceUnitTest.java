@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest;
+package com.julioluis.trainingrest.unit;
 
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.resources.UserResource;

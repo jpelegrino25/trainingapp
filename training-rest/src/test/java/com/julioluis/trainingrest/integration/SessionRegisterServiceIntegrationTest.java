@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -35,35 +35,4 @@ public class SessionRegisterServiceIntegrationTest {
         assertNotNull(sessionRegister1);
     }
 
-
-    @Test
-    public void testSave_BusinessException_RegisterSesionId() {
-        assertThrows(BusinessException.class,()->{
-            SessionRegister sessionRegister=(SessionRegister) PrototypeFactory.trainingProptotype(ModelType.SESSION_REGISTER);
-            sessionRegister.setRegisterSessionId(null);
-
-            sessionRegisterService.save(sessionRegister);
-        });
-    }
-
-    @Test
-    public void testSave_BusinessException_Session() {
-        assertThrows(BusinessException.class,()->{
-            SessionRegister sessionRegister=(SessionRegister) PrototypeFactory.trainingProptotype(ModelType.SESSION_REGISTER);
-            sessionRegister.getRegisterSessionId().setSession(null);
-
-            sessionRegisterService.save(sessionRegister);
-        });
-    }
-
-
-    @Test
-    public void testSave_BusinessException_User() {
-        assertThrows(BusinessException.class,()->{
-            SessionRegister sessionRegister=(SessionRegister) PrototypeFactory.trainingProptotype(ModelType.SESSION_REGISTER);
-            sessionRegister.getRegisterSessionId().setUser(null);
-
-            sessionRegisterService.save(sessionRegister);
-        });
-    }
 }

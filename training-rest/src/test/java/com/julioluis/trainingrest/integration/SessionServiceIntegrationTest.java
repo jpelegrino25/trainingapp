@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Date;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -37,12 +37,7 @@ public class SessionServiceIntegrationTest {
         assertNotNull(session);
     }
 
-    @Test
-    public void testFindById_throws_BusinessException() {
-       assertThrows(BusinessException.class,()-> {
-           sessionService.findById(-1);
-       });
-    }
+
 
     @Test
     public void testSaveSession() throws CloneNotSupportedException, BusinessException {
@@ -76,13 +71,7 @@ public class SessionServiceIntegrationTest {
 
     }
 
-    @Test
-    public void testDeleteSession() throws BusinessException {
-        int id = 18;
-        Session session=sessionService.deleteSession(id);
 
-        assertEquals(2,session.getStatus().getId());
-    }
 
     @Test
     public void testFindAvailableSessions() throws BusinessException {
@@ -98,30 +87,4 @@ public class SessionServiceIntegrationTest {
         assertEquals(false,sessionList.isEmpty());
     }
 
-    @Test
-    public void testSaveSession_throws_businessException_status()  {
-        assertThrows(BusinessException.class,()->{
-            Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
-            session.setStatus(null);
-            sessionService.saveSession(session);
-        });
-    }
-
-    @Test
-    public void testSaveSession_throws_businessException_User()  {
-        assertThrows(BusinessException.class,()->{
-            Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
-            sessionService.saveSession(session);
-        });
-    }
-
-    @Test
-    public void testSaveSession_throws_businessException_Training()  {
-        assertThrows(BusinessException.class,()->{
-            Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
-            User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
-            session.setUser(user);
-            sessionService.saveSession(session);
-        });
-    }
 }

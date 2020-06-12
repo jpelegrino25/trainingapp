@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -55,14 +55,6 @@ public class UserResourceIntegrationTest {
         ResponseEntity<Void> response=userResource.delete(8);
         assertEquals(200,response.getStatusCode().value());
     }
-
-    @Test
-    public void testDeleteFailure() {
-        assertThrows(UserException.class,()-> {
-            userResource.delete(-1);
-        });
-    }
-
 
 
 
