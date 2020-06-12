@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest.unit;
+package com.julioluis.trainingrest;
 
 import com.julioluis.trainingrest.entities.Attendance;
 import com.julioluis.trainingrest.repositories.AttendanceRepository;

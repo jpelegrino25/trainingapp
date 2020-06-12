@@ -1,4 +1,4 @@
-package com.julioluis.trainingrest.unit;
+package com.julioluis.trainingrest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
