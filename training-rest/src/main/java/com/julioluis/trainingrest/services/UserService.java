@@ -1,9 +1,5 @@
 package com.julioluis.trainingrest.services;
 
-
-
-import com.julioluis.trainingrest.dto.ResponseDTO;
-import com.julioluis.trainingrest.entities.Authority;
 import com.julioluis.trainingrest.entities.Rol;
 import com.julioluis.trainingrest.entities.Status;
 import com.julioluis.trainingrest.entities.User;

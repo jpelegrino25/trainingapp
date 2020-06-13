@@ -1,7 +1,6 @@
 package com.julioluis.trainingrest.services;
 
 import com.julioluis.trainingrest.entities.Session;
-import com.julioluis.trainingrest.entities.SessionRegister;
 import com.julioluis.trainingrest.utils.BusinessException;
 
 import java.util.List;

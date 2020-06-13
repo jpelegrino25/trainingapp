@@ -4,7 +4,7 @@ import com.julioluis.trainingrest.utils.prototypes.TrainingProptotype;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
+
 
 @Entity
 @Table(name = "session")
