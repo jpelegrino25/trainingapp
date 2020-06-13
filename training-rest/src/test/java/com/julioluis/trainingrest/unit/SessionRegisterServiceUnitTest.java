@@ -1,11 +1,11 @@
 package com.julioluis.trainingrest.unit;
 
-import com.julioluis.trainingrest.entities.RegisterSessionId;
+;
 import com.julioluis.trainingrest.entities.Session;
 import com.julioluis.trainingrest.entities.SessionRegister;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.repositories.SessionRegisterRepository;
-import com.julioluis.trainingrest.services.SessionRegisterService;
+
 import com.julioluis.trainingrest.services.impl.SessionRegisterServiceImpl;
 import com.julioluis.trainingrest.utils.BusinessException;
 import com.julioluis.trainingrest.utils.prototypes.ModelType;
@@ -27,7 +27,6 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-@RunWith(MockitoJUnitRunner.class)
 public class SessionRegisterServiceUnitTest {
 
     @Mock
@@ -44,6 +43,13 @@ public class SessionRegisterServiceUnitTest {
     public void testSave() throws BusinessException, CloneNotSupportedException {
 
         SessionRegister sessionRegister=(SessionRegister) PrototypeFactory.trainingProptotype(ModelType.SESSION_REGISTER);
+        Session session=new Session();
+        session.setId(13);
+        User user=new User();
+        user.setId(6);
+        sessionRegister.getRegisterSessionId().setUser(user);
+        sessionRegister.getRegisterSessionId().setSession(session);
+
         when(sessionRegisterRepository.save(any(SessionRegister.class))).thenReturn(sessionRegister);
 
         SessionRegister sessionRegister1=sessionRegisterService.save(sessionRegister);

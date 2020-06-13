@@ -16,11 +16,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class SessionResourceIntegrationTests {
 
     @Autowired
@@ -88,6 +88,13 @@ public class SessionResourceIntegrationTests {
 
         ResponseEntity<Void> response=sessionResource.delete(18);
         assertEquals(200,response.getStatusCode().value());
+    }
+
+    @Test
+    public void testDeleteNotFound() {
+        assertThrows(UserException.class,()-> {
+            sessionResource.delete(-1);
+        });
     }
 
 

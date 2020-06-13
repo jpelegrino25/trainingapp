@@ -12,11 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class TrainingResourceIntegrationTests {
 
     @Autowired
@@ -60,6 +60,15 @@ public class TrainingResourceIntegrationTests {
         int id=8;
         ResponseEntity<Void> response=trainingResource.deleteTraining(id);
         assertEquals(200,response.getStatusCode().value());
+
+    }
+
+    @Test
+    public void testFindById_UserException() {
+        assertThrows(UserException.class,()-> {
+            int id=-1;
+            trainingResource.getOne(id);
+        });
 
     }
 

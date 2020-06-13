@@ -29,7 +29,7 @@ import java.util.Optional;
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
-@RunWith(MockitoJUnitRunner.class)
+
 @SpringBootTest
 public class UserServiceUnitTest {
 

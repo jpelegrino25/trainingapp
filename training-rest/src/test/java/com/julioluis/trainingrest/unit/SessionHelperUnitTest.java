@@ -24,7 +24,6 @@ import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 @SpringBootTest
-@RunWith(MockitoJUnitRunner.class)
 public class SessionHelperUnitTest {
 
     @Mock

@@ -18,9 +18,9 @@ import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
 public class SessionServiceIntegrationTests {
 
     @Autowired
@@ -86,6 +86,33 @@ public class SessionServiceIntegrationTests {
         List<Session> sessionList=sessionService.findSessionsByInstructor(6);
         assertNotNull(sessionList);
         assertEquals(false,sessionList.isEmpty());
+    }
+
+    @Test
+    public void testSaveSession_throws_businessException_status()  {
+        assertThrows(BusinessException.class,()->{
+            Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
+            session.setStatus(null);
+            sessionService.saveSession(session);
+        });
+    }
+
+    @Test
+    public void testSaveSession_throws_businessException_User()  {
+        assertThrows(BusinessException.class,()->{
+            Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
+            sessionService.saveSession(session);
+        });
+    }
+
+    @Test
+    public void testSaveSession_throws_businessException_Training()  {
+        assertThrows(BusinessException.class,()->{
+            Session session=(Session) PrototypeFactory.trainingProptotype(ModelType.SESSION);
+            User user=(User) PrototypeFactory.trainingProptotype(ModelType.USER);
+            session.setUser(user);
+            sessionService.saveSession(session);
+        });
     }
 
 }
