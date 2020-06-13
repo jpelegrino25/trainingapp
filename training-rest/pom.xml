@@ -11,7 +11,7 @@
 	<groupId>com.julioluis</groupId>
 	<artifactId>training-rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+<!--	<packaging>jar</packaging>-->
 	<name>training-rest</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -102,8 +102,8 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
 
+			</plugin>
 		</plugins>
 	</build>
 

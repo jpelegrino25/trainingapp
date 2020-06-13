@@ -7,7 +7,8 @@ import com.julioluis.trainingrest.repositories.SessionRegisterRepository;
 import com.julioluis.trainingrest.repositories.SessionRepository;
 import com.julioluis.trainingrest.utils.SessionHelper;
 import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

@@ -10,5 +10,5 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({TrainingServiceIntegrationTests.class,
         TrainingResourceIntegrationTests.class
 })
-public class TrainingFeatureSuit {
+public class TrainingFeatureSuitTest {
 }

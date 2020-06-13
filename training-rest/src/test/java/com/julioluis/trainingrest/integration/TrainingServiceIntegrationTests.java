@@ -2,7 +2,8 @@ package com.julioluis.trainingrest.integration;
 
 import com.julioluis.trainingrest.entities.Training;
 import com.julioluis.trainingrest.services.TrainingService;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

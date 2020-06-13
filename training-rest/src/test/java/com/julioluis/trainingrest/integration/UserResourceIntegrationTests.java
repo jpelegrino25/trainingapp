@@ -4,7 +4,8 @@ import com.julioluis.trainingrest.entities.Rol;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.resources.UserResource;
 import com.julioluis.trainingrest.utils.UserException;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

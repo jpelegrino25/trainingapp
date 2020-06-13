@@ -11,7 +11,8 @@ import com.julioluis.trainingrest.utils.UserHelper;
 import com.julioluis.trainingrest.utils.prototypes.ModelType;
 import com.julioluis.trainingrest.utils.prototypes.PrototypeFactory;
 import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

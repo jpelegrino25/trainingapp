@@ -6,7 +6,8 @@ import com.julioluis.trainingrest.services.impl.AttendanceServiceImpl;
 import com.julioluis.trainingrest.utils.AttendanceHelper;
 import com.julioluis.trainingrest.utils.BusinessException;
 import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

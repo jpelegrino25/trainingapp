@@ -6,7 +6,8 @@ import com.julioluis.trainingrest.resources.SessionRegisterResource;
 import com.julioluis.trainingrest.services.SessionRegisterService;
 import com.julioluis.trainingrest.utils.prototypes.ModelType;
 import com.julioluis.trainingrest.utils.prototypes.PrototypeFactory;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

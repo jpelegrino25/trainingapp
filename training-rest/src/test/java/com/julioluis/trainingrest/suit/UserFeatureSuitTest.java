@@ -10,5 +10,5 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({UserHelperIntegrationTests.class,
         UserServiceIntegrationTests.class, UserResourceIntegrationTests.class
         })
-public class UserFeatureSuit {
+public class UserFeatureSuitTest {
 }

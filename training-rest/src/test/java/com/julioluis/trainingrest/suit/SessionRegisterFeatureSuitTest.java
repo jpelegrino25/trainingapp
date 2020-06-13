@@ -11,5 +11,5 @@ import org.junit.runners.Suite;
         SessionRegisterServiceIntegrationTests.class,
         SessionRegisterResourceIntegrationTests.class
 })
-public class SessionRegisterFeatureSuit {
+public class SessionRegisterFeatureSuitTest {
 }
