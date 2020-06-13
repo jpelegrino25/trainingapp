@@ -1,7 +1,5 @@
 package com.julioluis.trainingrest.config;
 
-
-
 import com.julioluis.trainingrest.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,7 +38,7 @@ public class SpringScurityConfig extends WebSecurityConfigurerAdapter {
                     })
                     .authenticationEntryPoint((request, response, authException) -> {
                         response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-                    });;
+                    });
 
                  http
                          .csrf().disable()

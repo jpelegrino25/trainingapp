@@ -1,11 +1,8 @@
 package com.julioluis.trainingrest.services.impl;
 
 import com.julioluis.trainingrest.entities.Session;
-import com.julioluis.trainingrest.entities.SessionRegister;
 import com.julioluis.trainingrest.entities.Status;
-import com.julioluis.trainingrest.repositories.SessionRegisterRepository;
 import com.julioluis.trainingrest.repositories.SessionRepository;
-import com.julioluis.trainingrest.repositories.UserRepository;
 import com.julioluis.trainingrest.services.SessionService;
 import com.julioluis.trainingrest.utils.BusinessException;
 import com.julioluis.trainingrest.utils.SessionHelper;
@@ -13,8 +10,6 @@ import com.julioluis.trainingrest.utils.StatusEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -22,11 +17,6 @@ public class SessionServiceImpl implements SessionService {
 
     @Autowired
     private SessionRepository sessionRepository;
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private SessionRegisterRepository sessionRegisterRepository;
 
     @Autowired
     private SessionHelper sessionHelper;

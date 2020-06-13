@@ -1,7 +1,6 @@
 package com.julioluis.trainingrest.resources;
 
 import com.julioluis.trainingrest.entities.Session;
-import com.julioluis.trainingrest.entities.SessionRegister;
 import com.julioluis.trainingrest.services.SessionService;
 import com.julioluis.trainingrest.utils.BusinessException;
 import com.julioluis.trainingrest.utils.UserException;
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Objects;
+
 
 @RestController
 @RequestMapping("sessions")
