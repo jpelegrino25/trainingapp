@@ -14,12 +14,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UserService implements UserDetailsService {
 
     @Autowired
@@ -54,7 +56,7 @@ public class UserService implements UserDetailsService {
            if(Objects.isNull(user.getPassword()))
                throw new BusinessException("User require password to be created");
 
-           if(Objects.isNull(user.getId())) {
+           if(user.getId()<0) {
                BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
                String pass = encoder.encode(user.getPassword());
                user.setPassword(pass);
@@ -92,6 +94,7 @@ public class UserService implements UserDetailsService {
         return user.get();
     }
 
+
     public User deleteUser(Integer id) throws BusinessException {
         User user=findById(id);
 
@@ -99,7 +102,8 @@ public class UserService implements UserDetailsService {
             throw new BusinessException("Unable to delete user with the id "+ id);
 
         user.setStatus(new Status(StatusEnum.INACTIVE.getStatus()));
-       User userDeleted= userRepository.save(user);
+       User userDeleted= userRepository.saveAndFlush(user);
+
 
        return userDeleted;
 

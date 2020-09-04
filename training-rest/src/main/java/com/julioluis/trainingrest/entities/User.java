@@ -27,8 +27,7 @@ public class User implements TrainingProptotype {
     @Size(min = 5,message = "At least Username should have 5 characters")
     @ApiModelProperty(notes = "At least Username should have 5 characters")
     private String username;
-    @JsonIgnore
-    @NotNull(message = "Password should not be null")
+//    @JsonIgnore
     private String password;
 
     @ManyToOne

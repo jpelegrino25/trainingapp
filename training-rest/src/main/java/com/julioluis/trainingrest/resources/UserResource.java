@@ -70,14 +70,14 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody @Valid User user) {
+    public ResponseEntity<User> create(@RequestBody @Valid User user) {
 
         try {
           User userSaved=userService.saveUser(user);
             URI uri= ServletUriComponentsBuilder.fromCurrentRequestUri()
                     .path("/{id}").buildAndExpand(userSaved.getId()).toUri();
 
-            return ResponseEntity.created(uri).build();
+            return ResponseEntity.created(uri).body(userSaved);
 
         } catch (BusinessException e) {
             throw new UserException(e.getMessage());
@@ -99,10 +99,10 @@ public class UserResource {
     }
 
     @DeleteMapping(path = "{userId}")
-    public ResponseEntity<Void> delete(@PathVariable(name = "userId") Integer id) {
+    public ResponseEntity<User> delete(@PathVariable(name = "userId") Integer id) {
         try {
-            userService.deleteUser(id);
-            return ResponseEntity.ok().build();
+            User userDeleted=userService.deleteUser(id);
+            return ResponseEntity.ok().body(userDeleted);
         } catch (BusinessException e) {
             throw new UserException(e.getMessage());
         }

@@ -14,6 +14,11 @@ public class Status {
         this.id=id;
     }
 
+    public Status(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
     public Status() {
     }
 

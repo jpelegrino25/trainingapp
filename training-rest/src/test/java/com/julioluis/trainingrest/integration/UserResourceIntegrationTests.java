@@ -1,8 +1,10 @@
 package com.julioluis.trainingrest.integration;
 
 import com.julioluis.trainingrest.entities.Rol;
+import com.julioluis.trainingrest.entities.Status;
 import com.julioluis.trainingrest.entities.User;
 import com.julioluis.trainingrest.resources.UserResource;
+import com.julioluis.trainingrest.utils.StatusEnum;
 import com.julioluis.trainingrest.utils.UserException;
 
 import org.junit.jupiter.api.Test;
@@ -31,8 +33,9 @@ public class UserResourceIntegrationTests {
         Rol rol=new Rol();
         rol.setId(1);
         user.setRol(rol);
+        user.setStatus(new Status(StatusEnum.ACTIVE.getStatus()));
 
-        ResponseEntity<Void> response=userResource.create(user);
+        ResponseEntity<User> response=userResource.create(user);
 
         assertEquals(201,response.getStatusCode().value());
 
@@ -53,7 +56,7 @@ public class UserResourceIntegrationTests {
 
     @Test
     public void testDeleteSuccess() {
-        ResponseEntity<Void> response=userResource.delete(8);
+        ResponseEntity<User> response=userResource.delete(8);
         assertEquals(200,response.getStatusCode().value());
     }
 
