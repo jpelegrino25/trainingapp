@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { loadRoles } from "../../redux/actions/rolesAction";
 import { loadStatuses } from "../../redux/actions/statusActions";
 import { connect } from "react-redux";
+import InputField from "../common/InputField";
+import SelectInput from "../common/SelectInput";
 
 const UserForm = ({
   user,
@@ -29,51 +31,35 @@ const UserForm = ({
           </div>
           <div className="card-body">
             <form>
-              <div className="form-group">
-                <label htmlFor="firstname">FirstName</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="firstname"
-                  value={user.firstname || ""}
-                  onChange={onChange}
-                />
-              </div>
+              <InputField
+                label="FirstName"
+                name="firstname"
+                value={user.firstname || ""}
+                onChange={onChange}
+              />
 
-              <div className="form-group">
-                <label htmlFor="lastname">LastName</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="lastname"
-                  value={user.lastname || ""}
-                  onChange={onChange}
-                />
-              </div>
+              <InputField
+                label="LastName"
+                name="lastname"
+                value={user.lastname || ""}
+                onChange={onChange}
+              />
 
-              <div className="form-group">
-                <label htmlFor="emailAddress">Email Address</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="emailAddress"
-                  value={user.emailAddress || ""}
-                  onChange={onChange}
-                />
-              </div>
+              <InputField
+                label="Email Address"
+                name="emailAddress"
+                value={user.emailAddress || ""}
+                onChange={onChange}
+              />
 
               {user.id < 0 && (
                 <>
-                  <div className="form-group">
-                    <label htmlFor="username">UserName</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="username"
-                      value={user.username || ""}
-                      onChange={onChange}
-                    />
-                  </div>
+                  <InputField
+                    label="UserName"
+                    name="username"
+                    value={user.username || ""}
+                    onChange={onChange}
+                  />
 
                   <div className="form-group">
                     <label htmlFor="password">Password</label>
@@ -88,46 +74,30 @@ const UserForm = ({
                 </>
               )}
 
-              <div className="form-group">
-                <label htmlFor="rol">User Rol</label>
-                <select
-                  className="form-control"
-                  name="rol"
-                  value={user.rol && user.rol.id}
-                  onChange={onChange}
-                >
-                  <option>Select a Rol</option>
-                  {roles.map((rol) => {
-                    return (
-                      <React.Fragment key={rol.id || 0}>
-                        <option value={rol.id}>{rol.description}</option>
-                      </React.Fragment>
-                    );
-                  })}
-                </select>
-              </div>
+              <SelectInput
+                name="rol"
+                value={user.rol && user.rol.id}
+                onChange={onChange}
+                defaultOption="Select a Rol"
+                label="User Rol"
+                options={roles.map((rol) => ({
+                  value: rol.id,
+                  text: rol.description,
+                }))}
+              />
 
               {user.id > 0 && (
-                <div className="form-group">
-                  <label htmlFor="status">Status</label>
-                  <select
-                    className="form-control"
-                    name="status"
-                    value={user.status && user.status.id}
-                    onChange={onChange}
-                  >
-                    <option>Select a Status</option>
-                    {statuses.map((status) => {
-                      return (
-                        <React.Fragment key={status.id}>
-                          <option value={status.id}>
-                            {status.description}
-                          </option>
-                        </React.Fragment>
-                      );
-                    })}
-                  </select>
-                </div>
+                <SelectInput
+                  name="status"
+                  value={user.status && user.status.id}
+                  onChange={onChange}
+                  defaultOption="Select a Status"
+                  label="Status"
+                  options={statuses.map((status) => ({
+                    value: status.id,
+                    text: status.description,
+                  }))}
+                />
               )}
 
               <div className="form-group">
